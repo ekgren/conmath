@@ -1,102 +1,12 @@
 import math
 
-############################################################
-# The laws of arithmetic
-############################################################
-
-
-def laws_of_addition(a, b, c):
-    """ The laws of addition are: """
-
-    def commutative(a, b):
-        """ a + b = b + a       (Commutative) """
-        return a + b == b + a
-
-    def associative(a, b, c):
-        """ (a + b) + c = a + (b + c)     (Associative) """
-        return (a + b) + c == a + (b + c)
-
-    return commutative(a, b) and associative(a, b, c)
-
-
-def laws_of_multiplication(a, b, c):
-    """ The laws of multiplication are: """
-
-    def commutative(a, b):
-        """ a * b = b * a       (Commutative) """
-        return a * b == b * a
-
-    def associative(a, b, c):
-        """ (a * b) * c = a * (b * c)     (Associative) """
-        return (a * b) * c == a * (b * c)
-
-    def identity(a):
-        """ a * 1 = a    (identity) """
-        return a * 1 == a
-
-    return commutative(a, b) and associative(a, b, c) and identity(a)
-
-
-def laws_of_subtraction(a, b, c):
-    """ The laws of subtraction are: """
-
-    def law_one(a, b, c):
-        return a - (b + c) == (a - b) - c
-
-    def law_two(a, b):
-        return a + (b - c) == (a + b) - c
-
-    def law_three(a, b):
-        return a - (b - c) == (a - b) + c
-
-    return law_one(a, b, c) and law_two(a, b) and law_three(a, b)
-
-
-def laws_of_division(a, b, c):
-    """ The laws of division are: """
-
-    def law_one(a, b):
-        return a / b + c / b == (a + c) / b
-
-    def law_two(a, b):
-        return (b * a) / (b * c) == a / c
-
-    return law_one(a, b) and law_two(a, b)
-
-
-def distributive_law(a, b, c):
-    """ a * (b + c) = (a * b) + (a * c)     (Distributive) """
-    return a * (b + c) == (a * b) + (a * c) and (a + b) * c == (a * c) + (b * c)
-
-
-def field(a, b, c):
-    """ A field is a set of numbers that satisfies the following properties: """
-
-    def closure(a, b):
-        """ Closure under addition and multiplication """
-        return True # type(a + b) == type(a) and type(a * b) == type(a)
-
-    def commutative(a, b):
-        """ Commutative """
-        return a + b == b + a and a * b == b * a
-
-    def associative(a, b, c):
-        """ Associative """
-        return (a + b) + c == a + (b + c) and (a * b) * c == a * (b * c)
-
-    def identity(a):
-        """ Identity """
-        return a + 0 == a and a * 1 == a
-
-    def inverse(a):
-        """ Inverse """
-        return a + (-a) == 0 and a * (1 / a) == 1
-
-    def distributive(a, b, c):
-        """ Distributive """
-        return a * (b + c) == (a * b) + (a * c) and (a + b) * c == (a * c) + (b * c)
-
-    return closure(a, b) and commutative(a, b) and associative(a, b, c) and identity(a) and inverse(a) and distributive(a, b, c)
+from theorems import (
+    laws_of_addition,
+    laws_of_multiplication,
+    laws_of_subtraction,
+    laws_of_division,
+    distributive_law,
+)
 
 
 ############################################################
@@ -105,83 +15,94 @@ def field(a, b, c):
 
 
 class Num:
-    """ Natural Number
+    """Natural Number
     Definition: A natural number is a string of 1's.
     1, 11, 111, 1111, 11111, ...
     In this implementation we choose to represent a natural number with
     the Hindu-Arabic number system as an integer.
     """
-    def __init__(self, data):
+
+    def __init__(self, input):
+        data = input.data if isinstance(input, Num) else input
         assert isinstance(data, int), f"data = {data} needs to be int"
         assert data >= 0, f"data = {data} needs to be >= 0"
         self.data = data
 
     def successor(self):
-        return Num(self.data + 1)
+        return Num(self + 1)
 
     def __add__(self, other):
-        """ Addition or the + operator.
+        """Addition or the + operator.
         Definition: The sum of n and m is the combination of the 1's in n and m.
         It is written n + m."""
         other = other if isinstance(other, Num) else Num(other)
         return Num(self.data + other.data)
 
+    def __radd__(self, other):
+        return self + other
+
     def __sub__(self, other):
-        """ Subtraction (the inverse of addition) or the - operator.
+        """Subtraction (the inverse of addition) or the - operator.
         n - m <=> The number of 1's in n that are not in m.
         """
         other = other if isinstance(other, Num) else Num(other)
-        assert self.data >= other.data, f"{self.data} - {other.data} is only defined if n > m"
+        assert (
+            self.data >= other.data
+        ), f"{self.data} - {other.data} is only defined if n > m"
         return Num(self.data - other.data)
 
     def __mul__(self, other):
-        """ * operator
+        """* operator
         Definition: The product of numbers n and m is the string formed by a copy
         of m for every 1 in n. It is written n * m.
         """
         other = other if isinstance(other, Num) else Num(other)
         return Num(self.data * other.data)
 
+    def __rmul__(self, other):
+        return self * other
+
     def __truediv__(self, other):
-        """ / operator
+        """/ operator
         n / m <=> The number of times m can be subtracted from n.
         """
         other = other if isinstance(other, Num) else Num(other)
-        assert self.data / other.data == self.data // other.data, \
-            f"{self.data} / {other.data} is only defined if m is a factor of n"
+        assert (
+            self.data / other.data == self.data // other.data
+        ), f"{self.data} / {other.data} is only defined if m is a factor of n"
         assert other.data != 0, "Division by zero is undefined"
         return Num(self.data // other.data)
 
     def __eq__(self, other):
-        """ == operator
+        """== operator
         n = m <=> The 1's in n can be paired up with the 1's in m.
         """
         other = other if isinstance(other, Num) else Num(other)
         return self.data == other.data
 
     def __lt__(self, other):
-        """ < operator
+        """< operator
         n < m <=> n comes before m in the sequence of natural numbers.
         """
         other = other if isinstance(other, Num) else Num(other)
         return self.data < other.data
 
     def __gt__(self, other):
-        """ > operator
+        """> operator
         n > m <=> n comes after m in the sequence of natural numbers.
         """
         other = other if isinstance(other, Num) else Num(other)
         return self.data > other.data
 
     def __le__(self, other):
-        """ <= operator
+        """<= operator
         n <= m <=> n comes before or is equal to m in the sequence of natural numbers.
         """
         other = other if isinstance(other, Num) else Num(other)
         return self.data <= other.data
 
     def __ge__(self, other):
-        """ >= operator
+        """>= operator
         n >= m <=> n comes after or is equal to m in the sequence of natural numbers.
         """
         other = other if isinstance(other, Num) else Num(other)
@@ -195,6 +116,7 @@ class Fra:
     """
     Definition: A fraction is an ordered pair (m, n) of natural numbers, also written m / n.
     """
+
     def __init__(self, m, n, normalize=True):
         m = m if isinstance(m, Num) else Num(m)
         n = n if isinstance(n, Num) else Num(n)
@@ -204,35 +126,37 @@ class Fra:
             self.normalize()
 
     def __add__(self, other):
-        """ Addition or the + operator.
+        """Addition or the + operator.
         Definition: The sum of fractions a / b and c / d is the fraction (ad + bc) / bd.
         """
         other = other if isinstance(other, Fra) else Fra(other, 1)
-        return Fra(self.m * other.n + self.n * other.m, self.n * other.n)
+        m = self.m * other.n + self.n * other.m
+        n = self.n * other.n
+        return Fra(m, n)
 
     def __sub__(self, other):
-        """ Subtraction or the - operator.
+        """Subtraction or the - operator.
         Definition: The difference of fractions a / b and c / d is the fraction (ad - bc) / bd.
         """
         other = other if isinstance(other, Fra) else Fra(other, 1)
         return Fra(self.m * other.n - self.n * other.m, self.n * other.n)
 
     def __mul__(self, other):
-        """ Multiplication or the * operator.
+        """Multiplication or the * operator.
         Definition: The product of fractions a / b and c / d is the fraction ac / bd.
         """
         other = other if isinstance(other, Fra) else Fra(other, 1)
         return Fra(self.m * other.m, self.n * other.n)
 
     def __truediv__(self, other):
-        """ Division or the / operator.
+        """Division or the / operator.
         Definition: The quotient of fractions a / b and c / d is the fraction ad / bc.
         """
         other = other if isinstance(other, Fra) else Fra(other, 1)
         return Fra(self.m * other.n, self.n * other.m)
 
     def __eq__(self, other):
-        """ == operator
+        """== operator
         (m, n) = (p, q) <=> m * q = n * p
         """
         other = other if isinstance(other, Fra) else Fra(other, 1)
@@ -242,7 +166,7 @@ class Fra:
         return f"F({self.m.data}/{self.n.data})"
 
     def normalize(self):
-        """ Normalizes the fraction """
+        """Normalizes the fraction"""
         gcd = math.gcd(self.m.data, self.n.data)
         while gcd > 1:
             self.m.data //= gcd
@@ -254,6 +178,7 @@ class Int:
     """
     Definition: An integer is an ordered pair (m, n) of natural numbers, written m\n.
     """
+
     def __init__(self, m, n=None):
         # Accepts two input forms. If n is not provided, then m can be a negative int.
         # If n is provided, then m must be a positive int or Num.
@@ -280,7 +205,7 @@ class Int:
         assert isinstance(self.n, Num), f"n = {self.n} needs to be Num"
 
     def __add__(self, other):
-        """ Addition or the + operator.
+        """Addition or the + operator.
         Definition: The sum of integers m | n and k | l is the integer (m + k) | (n + l).
         """
         other = other if isinstance(other, Int) else Int(other)
@@ -288,7 +213,7 @@ class Int:
         return Int(m + k, n + l)
 
     def __sub__(self, other):
-        """ Subtraction or the - operator.
+        """Subtraction or the - operator.
         Definition: The difference of integers m | n and k | l is the integer (m + l) | (n + k).
         """
         other = other if isinstance(other, Int) else Int(other)
@@ -296,15 +221,15 @@ class Int:
         return Int(m + l, n + k)
 
     def __mul__(self, other):
-        """ Multiplication or the * operator.
+        """Multiplication or the * operator.
         Definition: The product of integers m | n and k | l is the integer (mk + nl) | (ml + nk).
         """
         other = other if isinstance(other, Int) else Int(other)
         m, n, k, l = self.m, self.n, other.m, other.n
-        return Int(m*k + n*l, m*l + n*k)
+        return Int(m * k + n * l, m * l + n * k)
 
     def __eq__(self, other):
-        """ == operator
+        """== operator
         Definition: Integers m | n and k | l are equal <=> m + l = n + k.
         """
         other = other if isinstance(other, Int) else Int(other)
@@ -323,6 +248,7 @@ class Rat:
     Definition: A rational number is an ordered pair (a, b) a, b in Int, b != 0
     Written a/b [0 == 1 | 1]
     """
+
     def __init__(self, a, b=1):
         a = a if isinstance(a, Int) else Int(a)
         b = b if isinstance(b, Int) else Int(b)
@@ -330,7 +256,7 @@ class Rat:
         self.b = b
 
     def __add__(self, other):
-        """ Addition or the + operator.
+        """Addition or the + operator.
         Definition: The sum of rational numbers a / b and c / d is the rational number (a * d + b * c) / (b * d).
         """
         other = other if isinstance(other, Rat) else Rat(other)
@@ -338,7 +264,7 @@ class Rat:
         return Rat(a * d + b * c, b * d)
 
     def __sub__(self, other):
-        """ Subtraction or the - operator.
+        """Subtraction or the - operator.
         Definition: The difference of rational numbers a / b and c / d is the rational number (a * d - b * c) / (b * d).
         """
         other = other if isinstance(other, Rat) else Rat(other)
@@ -346,7 +272,7 @@ class Rat:
         return Rat(a * d - b * c, b * d)
 
     def __mul__(self, other):
-        """ Multiplication or the * operator.
+        """Multiplication or the * operator.
         Definition: The product of rational numbers a / b and c / d is the rational number (a * c) / (b * d).
         """
         other = other if isinstance(other, Rat) else Rat(other)
@@ -354,7 +280,7 @@ class Rat:
         return Rat(a * c, b * d)
 
     def __truediv__(self, other):
-        """ Division or the / operator.
+        """Division or the / operator.
         Definition: The quotient of rational numbers a / b and c / d is the rational number (a * d) / (b * c).
         """
         other = other if isinstance(other, Rat) else Rat(other)
@@ -362,7 +288,7 @@ class Rat:
         return Rat(a * d, b * c)
 
     def __eq__(self, other):
-        """ == operator
+        """== operator
         a/b = c/d <=> a * d = b * c
         """
         other = other if isinstance(other, Rat) else Rat(other)
@@ -379,7 +305,7 @@ class Rat:
 
 if __name__ == "__main__":
     # Natural Numbers
-    a = Num(4)
+    a = 1 + Num(4)
     b = Num(2)
     c = Num(2)
     assert laws_of_addition(a, b, c)
@@ -423,7 +349,5 @@ if __name__ == "__main__":
     assert distributive_law(a, b, c)
     # assert field(a, b, c)
     print("Rational Numbers passed")
-
-
 
     print("All tests passed")
