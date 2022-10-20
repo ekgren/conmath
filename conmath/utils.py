@@ -11,3 +11,9 @@ def arity(func: Any) -> int:
     https://en.wikipedia.org/wiki/Arity"""
     assert callable(func), "function must be callable"
     return len(signature(func).parameters)
+
+
+# We might want to add something like arity for the number of elements in type data tuples.
+
+# For later if we want to build a graph on what functions use what functions we can use this:
+# https://stackoverflow.com/questions/51901676/get-the-lists-of-functions-used-called-within-a-function-in-python

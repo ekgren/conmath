@@ -1,6 +1,6 @@
 """ A property of an operation is a truth statement of the inputs to the operation. """
 from utils import arity
-from operations import add
+from operations import add_num
 
 
 def commutative(binary_operation, a, b) -> bool:
@@ -118,5 +118,5 @@ def distributive(binary_operation_a, binary_operation_b, a, b, c) -> bool:
 if __name__ == "__main__":
     a = 1
     b = 2
-    commutativity = commutative(add, a, b)
+    commutativity = commutative(add_num, a, b)
     print(f"commutativity between {a} and {b}: {commutativity}")

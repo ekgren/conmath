@@ -1,4 +1,4 @@
-from operations import add, mul
+from operations import add_num, sub_num, mul_num, div_num
 from properties import commutative, associative
 
 ############################################################
@@ -11,8 +11,10 @@ def laws_of_addition(a, b, c):
     commutativity: a + b = b + a
     associativity: (a + b) + c = a + (b + c)
     """
-    commutativity = commutative(a, b, add)
-    associativity = associative(a, b, c, add)
+    assert type(a) == type(b) == type(c), "a, b, and c must be of the same type"
+    instance_type = type(a)
+    commutativity = commutative(instance_type.add, a, b)
+    associativity = associative(instance_type.add, a, b, c)
     return commutativity and associativity
 
 
@@ -22,8 +24,8 @@ def laws_of_multiplication(a, b, c):
     associativity: (a * b) * c = a * (b * c)
     identity: a * 1 = 1 * a = a
     """
-    commutativity = commutative(a, b, mul)
-    associativity = associative(a, b, c, mul)
+    commutativity = commutative(mul_num, a, b)
+    associativity = associative(mul_num, a, b, c)
     identity = a * 1 == 1 * a == a
     return commutativity and associativity and identity
 
