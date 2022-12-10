@@ -1,5 +1,7 @@
 from typing import Any
 from inspect import signature
+from containers import Num
+from operations import successor_num
 
 
 def arity(func: Any) -> int:
@@ -13,7 +15,9 @@ def arity(func: Any) -> int:
     return len(signature(func).parameters)
 
 
-# We might want to add something like arity for the number of elements in type data tuples.
-
-# For later if we want to build a graph on what functions use what functions we can use this:
-# https://stackoverflow.com/questions/51901676/get-the-lists-of-functions-used-called-within-a-function-in-python
+def make_num(n: int) -> Num:
+    """Returns a Num object with the given value."""
+    x = Num()
+    for _ in range(n):
+        x = successor_num(x)
+    return x

@@ -1,9 +1,9 @@
 """ A property of an operation is a truth statement of the inputs to the operation. """
-from utils import arity, make_num
-from operations import add_num, eq_num, mul_num
+from conmath.utils import arity
+from operations import add_num
 
 
-def commutative(binary_operation, equality, a, b) -> bool:
+def commutative(binary_operation, a, b) -> bool:
     """In mathematics, a binary operation is commutative if changing the order of the operands does not change the
     result. It is a fundamental property of many binary operations, and many mathematical proofs depend on it.
 
@@ -19,12 +19,10 @@ def commutative(binary_operation, equality, a, b) -> bool:
     https://en.wikipedia.org/wiki/Commutative_property"""
     assert arity(binary_operation) == 2, "binary_operation must take two arguments"
     assert type(a) == type(b), "a and b must be of the same type"
-    left = binary_operation(a, b)
-    right = binary_operation(b, a)
-    return equality(left, right)
+    return binary_operation(a, b) == binary_operation(b, a)
 
 
-def associative(binary_operation, equality, a, b, c) -> bool:
+def associative(binary_operation, a, b, c) -> bool:
     """In mathematics, an operation is associative if changing the grouping of its operands does not change the
     result. For example, the addition of three numbers is associative, because the result is the same regardless of
     how the numbers are grouped. For example, (a + b) + c = a + (b + c). The associative property is a fundamental
@@ -39,12 +37,10 @@ def associative(binary_operation, equality, a, b, c) -> bool:
     assert type(a) == type(b) == type(c), "a, b, and c must be of the same type"
     left = binary_operation(a, binary_operation(b, c))
     right = binary_operation(binary_operation(a, b), c)
-    return equality(left, right)
+    return left == right
 
 
-def left_distributive(
-    binary_operation_a, binary_operation_b, equality, a, b, c
-) -> bool:
+def left_distributive(binary_operation_a, binary_operation_b, a, b, c) -> bool:
     """In mathematics, a binary operation is said to be left-distributive over another binary operation if the
     following equation holds:
 
@@ -68,12 +64,10 @@ def left_distributive(
     e = binary_operation_a(a, b)
     f = binary_operation_a(a, c)
     right = binary_operation_b(e, f)
-    return equality(left, right)
+    return left == right
 
 
-def right_distributive(
-    binary_operation_a, binary_operation_b, equality, a, b, c
-) -> bool:
+def right_distributive(binary_operation_a, binary_operation_b, a, b, c) -> bool:
     """In mathematics, a binary operation is said to be right-distributive over another binary operation if the
     following equation holds:
 
@@ -96,18 +90,33 @@ def right_distributive(
     e = binary_operation_a(b, a)
     f = binary_operation_a(c, a)
     right = binary_operation_b(e, f)
-    return equality(left, right)
+    return left == right
+
+
+def distributive(binary_operation_a, binary_operation_b, a, b, c) -> bool:
+    """In mathematics, a binary operation is said to be distributive over another binary operation if the
+    following equation holds:
+
+    (b + c) * a = (b * a) + (c * a)
+
+    where a, b, and c are elements of the same type, and * and + are binary operations. The operation + is said to be
+    distributive over the operation *.
+
+    https://en.wikipedia.org/wiki/Distributive_property"""
+    assert arity(binary_operation_a) == 2, "binary_operations must take two arguments"
+    assert arity(binary_operation_b) == 2, "binary_operations must take two arguments"
+    assert type(a) == type(b) == type(c), "a, b, and c must be of the same type"
+    left_distributivity = left_distributive(
+        a, b, c, binary_operation_a, binary_operation_b
+    )
+    right_distributivity = right_distributive(
+        a, b, c, binary_operation_a, binary_operation_b
+    )
+    return left_distributivity and right_distributivity
 
 
 if __name__ == "__main__":
-    a = make_num(2)
-    b = make_num(3)
-    c = make_num(5)
-    is_commutative = commutative(add_num, eq_num, a, b)
-    is_associative = associative(add_num, eq_num, a, b, c)
-    is_left_distributive = left_distributive(mul_num, add_num, eq_num, a, b, c)
-    is_right_distributive = right_distributive(mul_num, add_num, eq_num, a, b, c)
-    print(f"{a} + {b} = {b} + {a} is {is_commutative}")
-    print(f"({a} + {b}) + {a} = {a} + ({b} + {a}) is {is_associative}")
-    print(f"{a} * ({b} + {c}) = ({a} * {b}) + ({a} * {c}) is {is_left_distributive}")
-    print(f"({b} + {c}) * {a} = ({b} * {a}) + ({c} * {a}) is {is_right_distributive}")
+    a = 1
+    b = 2
+    commutativity = commutative(add_num, a, b)
+    print(f"commutativity between {a} and {b}: {commutativity}")

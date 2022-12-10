@@ -28,9 +28,78 @@ from theorems import (
 )
 
 
-############################################################
-# Type implementations
-############################################################
+class C0:
+    def __init__(self, *args):
+        for arg in args:
+            assert isinstance(arg, type(None)), "args must be NoneType."
+        self.args = args
+
+    def __repr__(self):
+        return f"C0({len(self)})"
+
+    def __str__(self):
+        return f"C0({len(self)})"
+
+    def __len__(self):
+        return len(self.args)
+
+    def __getitem__(self, key):
+        return self.args[key]
+
+    def __iter__(self):
+        return iter(self.args)
+
+
+class C1:
+    def __init__(self, *args):
+        for arg in args:
+            assert isinstance(arg, type(C0())), "args must be of type C0."
+        self.args = args
+
+    def __repr__(self):
+        out = ""
+        for arg in self.args:
+            out += f"\n  {arg},"
+        return f"C1({out}\n)"
+
+    def __str__(self):
+        return f"C1({len(self)})"
+
+    def __len__(self):
+        return len(self.args)
+
+    def __getitem__(self, key):
+        return self.args[key]
+
+    def __iter__(self):
+        return iter(self.args)
+
+
+class C2:
+    def __init__(self, *args):
+        for arg in args:
+            assert isinstance(arg, type(C1())), "args must be of type C1."
+        self.args = args
+
+    def __repr__(self):
+        out = ""
+        for arg in self.args:
+            for subarg in repr(arg).split("\n"):
+                out += f"\n  {subarg}"
+            out += ","
+        return f"C2({out}\n)"
+
+    def __str__(self):
+        return f"C2({len(self)})"
+
+    def __len__(self):
+        return len(self.args)
+
+    def __getitem__(self, key):
+        return self.args[key]
+
+    def __iter__(self):
+        return iter(self.args)
 
 
 class Num:
