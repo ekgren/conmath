@@ -1,6 +1,5 @@
 """ A property of an operation is a truth statement of the inputs to the operation. """
-from utils import arity, make_num
-from operations import add_num, eq_num, mul_num
+from utils import arity
 
 
 def commutative(binary_operation, equality, a, b) -> bool:
@@ -99,15 +98,22 @@ def right_distributive(
     return equality(left, right)
 
 
-if __name__ == "__main__":
-    a = make_num(2)
-    b = make_num(3)
-    c = make_num(5)
-    is_commutative = commutative(add_num, eq_num, a, b)
-    is_associative = associative(add_num, eq_num, a, b, c)
-    is_left_distributive = left_distributive(mul_num, add_num, eq_num, a, b, c)
-    is_right_distributive = right_distributive(mul_num, add_num, eq_num, a, b, c)
+def test():
+    from ops import num
+    from containers import Num
+
+    a = Num(2)
+    b = Num(3)
+    c = Num(5)
+    is_commutative = commutative(num.add, num.eq, a, b)
+    is_associative = associative(num.add, num.eq, a, b, c)
+    is_left_distributive = left_distributive(num.mul, num.add, num.eq, a, b, c)
+    is_right_distributive = right_distributive(num.mul, num.add, num.eq, a, b, c)
     print(f"{a} + {b} = {b} + {a} is {is_commutative}")
     print(f"({a} + {b}) + {a} = {a} + ({b} + {a}) is {is_associative}")
     print(f"{a} * ({b} + {c}) = ({a} * {b}) + ({a} * {c}) is {is_left_distributive}")
     print(f"({b} + {c}) * {a} = ({b} * {a}) + ({c} * {a}) is {is_right_distributive}")
+
+
+if __name__ == "__main__":
+    test()

@@ -125,209 +125,209 @@ def make_num1(n):
 
 def add1(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = c.successor()
-    for _ in a.b:
+    for _ in a.y:
         c = c.predecessor()
-    for _ in b.a:
+    for _ in b.x:
         c = c.successor()
-    for _ in b.b:
+    for _ in b.y:
         c = c.predecessor()
     return c.remap()
 
 
 def add2(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = c.predecessor()
-    for _ in a.b:
+    for _ in a.y:
         c = c.successor()
-    for _ in b.a:
+    for _ in b.x:
         c = c.predecessor()
-    for _ in b.b:
+    for _ in b.y:
         c = c.successor()
     return c.remap()
 
 
 def add3(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = c.successor()
-    for _ in a.b:
+    for _ in a.y:
         c = c.predecessor()
-    for _ in b.a:
+    for _ in b.x:
         c = c.predecessor()
-    for _ in b.b:
+    for _ in b.y:
         c = c.successor()
     return c.remap()
 
 
 def add4(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = c.predecessor()
-    for _ in a.b:
+    for _ in a.y:
         c = c.successor()
-    for _ in b.a:
+    for _ in b.x:
         c = c.successor()
-    for _ in b.b:
+    for _ in b.y:
         c = c.predecessor()
     return c.remap()
 
 
 def sub1(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = c.successor()
-    for _ in a.b:
+    for _ in a.y:
         c = c.predecessor()
-    for _ in b.a:
+    for _ in b.x:
         c = c.predecessor()
-    for _ in b.b:
+    for _ in b.y:
         c = c.successor()
     return c.remap()
 
 
 def mul11(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add1(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add1(c, b)
     return c.remap()
 
 
 def mul12(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add1(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add2(c, b)
     return c.remap()
 
 
 def mul13(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add1(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add3(c, b)
     return c.remap()
 
 
 def mul14(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add1(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add4(c, b)
     return c.remap()
 
 
 def mul21(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add2(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add1(c, b)
     return c.remap()
 
 
 def mul22(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add2(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add2(c, b)
     return c.remap()
 
 
 def mul23(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add2(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add3(c, b)
     return c.remap()
 
 
 def mul24(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add2(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add4(c, b)
     return c.remap()
 
 
 def mul31(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add3(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add1(c, b)
     return c.remap()
 
 
 def mul32(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add3(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add2(c, b)
     return c.remap()
 
 
 def mul33(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add3(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add3(c, b)
     return c.remap()
 
 
 def mul34(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add3(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add4(c, b)
     return c.remap()
 
 
 def mul41(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add4(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add1(c, b)
     return c.remap()
 
 
 def mul42(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add4(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add2(c, b)
     return c.remap()
 
 
 def mul43(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add4(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add3(c, b)
     return c.remap()
 
 
 def mul44(a, b):
     c = N1()
-    for _ in a.a:
+    for _ in a.x:
         c = add4(c, b)
-    for _ in a.b:
+    for _ in a.y:
         c = add4(c, b)
     return c.remap()
 

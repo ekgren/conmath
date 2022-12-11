@@ -1,7 +1,5 @@
 from typing import Any
 from inspect import signature
-from containers import Num
-from operations import successor_num
 
 
 def arity(func: Any) -> int:
@@ -13,11 +11,3 @@ def arity(func: Any) -> int:
     https://en.wikipedia.org/wiki/Arity"""
     assert callable(func), "function must be callable"
     return len(signature(func).parameters)
-
-
-def make_num(n: int) -> Num:
-    """Returns a Num object with the given value."""
-    x = Num()
-    for _ in range(n):
-        x = successor_num(x)
-    return x
