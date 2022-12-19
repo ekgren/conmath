@@ -6,13 +6,8 @@ def successor(a: Num) -> Num:
     return Num(f"{a.data}1")
 
 
-def eq(a: Num, b: Num) -> bool:
-    """Check if two Num are equal."""
-    return a.data == b.data
-
-
-def add(a: Num, b: Num) -> Num:
-    """Add two Num."""
+def combine(a: Num, b: Num) -> Num:
+    """Combine two Num."""
     c = Num()
     for _ in a:
         c = successor(c)
@@ -21,9 +16,32 @@ def add(a: Num, b: Num) -> Num:
     return c
 
 
-def mul(a: Num, b: Num) -> Num:
-    """Multiply two Num."""
-    c = Num()
-    for _ in a:
-        c = add(c, b)
-    return c
+def add(item, enumerator):
+    for _ in enumerator:
+        item = successor(item)
+    return item
+
+
+def mul(item, enumerator):
+    b = Num()
+    for _ in enumerator:
+        b = add(b, item)
+    return b
+
+
+def eq(a: Num, b: Num) -> bool:
+    """Check if two Num are equal."""
+    return a.data == b.data
+
+
+def test():
+    a = Num(2)
+    b = Num(3)
+    c = add(a, b)
+    d = mul(a, b)
+    print(c)
+    print(d)
+
+
+if __name__ == "__main__":
+    test()
