@@ -1,5 +1,5 @@
 """ A property of an operation is a truth statement of the inputs to the operation. """
-from utils import arity
+from conmath.utils import arity
 
 
 def commutative(binary_operation, equality, a, b) -> bool:
@@ -99,8 +99,8 @@ def right_distributive(
 
 
 def test():
-    from ops import num
-    from containers import Num
+    from conmath.ops import num
+    from conmath.containers import Num
 
     a = Num(2)
     b = Num(3)
