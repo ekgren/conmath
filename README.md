@@ -1,4 +1,4 @@
-# Conmath: Naive Constructive Mathematical Explorations
+# Conmath: Naive Constructive Mathematics
 
 Welcome to the Conmath repository! This is a place for exploring and learning about constructive mathematics in a naive 
 and experimental way.
@@ -9,16 +9,32 @@ Constructive mathematics is a branch of mathematics that focuses on the construc
 than just their existence or properties. This approach is inspired by the intuitionistic approach to mathematical logic, 
 which emphasizes the constructions and evidence behind mathematical statements.
 
-## What can I find in this repository?
+# Table of Contents
+1. [Introduction](#introduction)
+2. [Computation](#computation)
+3. [Mathematics](#mathematics)
+    1. [Arithmetic](#arithmetic)
+    2. [Abstract Algebra](#abstract-algebra)
+3. [External Resources](#external-resources)
 
-In this repository, you will find a collection of Jupyter notebooks and Python scripts that explore various topics in 
-constructive mathematics. These notebooks are meant to be educational and experimental in nature, and are not 
-necessarily rigorous or complete treatments of the topics covered.
+# Introduction
 
-## How can I contribute?
+This repository is a place for exploring and learning about constructive mathematics in a naive and experimental way.
 
-If you have an interest in constructive mathematics and would like to contribute to this repository, we welcome pull 
-requests with new notebooks or suggestions for improvement. We also welcome issues and discussions on the topics 
-covered here.
+# Computation
 
-Thank you for visiting the Conmath repository! We hope you find it useful and enjoyable.
+Constructive mathematics is closely related to computation, as it emphasizes the construction of mathematical objects and proofs. This connection has led to the development of computational interpretations of constructive mathematics, such as the Curry-Howard correspondence, which relates constructive proofs to computer programs.
+
+# Mathematics
+Mathematics is the domain of all languages, in the widest sense of the word.
+
+## Arithmetic
+Deals with numbers and basic operations such as addition, subtraction, multiplication, and division.
+
+## Abstract Algebra
+Deals with algebraic structures such as groups, rings, and fields.
+
+# External Resources
+
+- [Constructive Mathematics](https://plato.stanford.edu/entries/mathematics-constructive/) - An overview of constructive mathematics from the Stanford Encyclopedia of Philosophy.
+- [Constructive Mathematics](https://en.wikipedia.org/wiki/Constructive_mathematics) - The Wikipedia page on constructive mathematics.
