@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en" data-conmath-page="chapter" data-chapter="01-first-distinction">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Construct Bit, a one-cell machine, and the first checked Conmath proof.">
+    <title>01 · The First Distinction — Conmath</title>
+    <link rel="stylesheet" href="../../assets/styles.css">
+    <script type="module" src="../../assets/site.js"></script>
+    <script type="module" src="../../assets/chapter.js"></script>
+  </head>
+  <body class="chapter-page">
+    <div class="reading-progress" data-reading-progress aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="wordmark" href="../../">CONMATH</a>
+      <nav aria-label="Primary navigation">
+        <a aria-current="page" href="./">Chapter 01</a>
+        <a href="../../reference/">Reference</a>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+        <header class="chapter-hero">
+          <div class="chapter-hero__number" aria-hidden="true">01</div>
+          <div class="chapter-hero__copy">
+            <p class="eyebrow">Foundation · 14 min · executable</p>
+            <h1>The First<br>Distinction</h1>
+            <p class="chapter-abstract">
+              We construct two distinguishable values, give them a finite
+              representation, operate on them, and check our first proof.
+            </p>
+          </div>
+          <div class="chapter-hero__mark" aria-hidden="true">
+            <span>low</span><i></i><span>high</span>
+          </div>
+        </header>
+
+        <div class="article-shell">
+          <aside class="chapter-contents" aria-label="Chapter contents">
+            <p>In this chapter</p>
+            <ol>
+              <li><a href="#contract">Our contract</a></li>
+              <li><a href="#bit">Construct Bit</a></li>
+              <li><a href="#negation">Negation</a></li>
+              <li><a href="#laboratory">Run the machine</a></li>
+              <li><a href="#proof">Check the proof</a></li>
+              <li><a href="#account">Resource account</a></li>
+            </ol>
+          </aside>
+
+          <div class="article-body">
+            <section id="contract" class="reading-section lead-section" data-reveal>
+              <p class="section-kicker">1 · Our contract</p>
+              <p class="lead">
+                Conmath begins with what we can construct, distinguish, store,
+                transform, and check. It does not begin by assuming a completed
+                universe of mathematical objects.
+              </p>
+              <p>
+                This first chapter makes one deliberately small commitment. We
+                will admit a type with two values. Nothing here assumes natural
+                numbers, sets, induction, or an unbounded process.
+              </p>
+              <aside class="margin-note">
+                <strong>Construction</strong>
+                An explicit value or finite procedure accepted under the current
+                rules and resource envelope.
+              </aside>
+            </section>
+
+            <section id="bit" class="reading-section" data-reveal>
+              <p class="section-kicker">2 · Construct Bit</p>
+              <h2>Two values that are not the same.</h2>
+              <p>
+                We name the type <em>Bit</em> and introduce exactly two
+                constructors. The names describe distinction, not quantity.
+              </p>
+              <div class="formal-block" aria-label="Formal definition of Bit">
+                <div class="formal-block__label">Definition · conmath.bit.v1</div>
+                <pre><code><span class="syntax-type">Bit</span>  : Type
+<span class="syntax-value">low</span>  : Bit
+<span class="syntax-value">high</span> : Bit</code></pre>
+              </div>
+              <p>
+                A logical Bit requires one bit of representation. Our browser
+                simulation uses more physical memory because JavaScript has its
+                own object model. We will never confuse those two accounts.
+              </p>
+              <div class="distinction-figure" role="img" aria-label="The two Bit values low and high">
+                <div><span>0</span><strong>low</strong></div>
+                <div class="distinction-axis"><i></i><span>distinguishable</span><i></i></div>
+                <div data-value="high"><span>1</span><strong>high</strong></div>
+              </div>
+              <aside class="margin-note">
+                The symbols <code>0</code> and <code>1</code> are encodings shown
+                by the machine. At this point they are not yet natural numbers.
+              </aside>
+            </section>
+
+            <section id="negation" class="reading-section" data-reveal>
+              <p class="section-kicker">3 · Negation</p>
+              <h2>Exchange one distinction for the other.</h2>
+              <p>Negation is completely defined by its two cases:</p>
+              <div class="formal-block formal-block--split">
+                <div>
+                  <div class="formal-block__label">Operation · conmath.bit.not.v1</div>
+                  <pre><code>not : Bit → Bit
+
+not(<span class="syntax-value">low</span>)  = high
+not(<span class="syntax-value">high</span>) = low</code></pre>
+                </div>
+                <div class="gate-figure" aria-label="A NOT gate exchanges low and high">
+                  <span>Bit</span>
+                  <i class="gate-wire"></i>
+                  <b>NOT</b>
+                  <i class="gate-wire gate-wire--active"></i>
+                  <span>Bit</span>
+                </div>
+              </div>
+              <p>
+                This operation has a direct circuit interpretation: a NOT gate.
+                It also has a complete finite table, so every possible input is
+                visible rather than hidden behind an example.
+              </p>
+            </section>
+          </div>
+        </div>
+
+        <section id="laboratory" class="laboratory" aria-labelledby="laboratory-title">
+          <header class="laboratory__header">
+            <div>
+              <p class="section-kicker section-kicker--dark">4 · Executable construction</p>
+              <h2 id="laboratory-title">A one-cell machine</h2>
+            </div>
+            <p>Four instructions. Three state words. One observable distinction.</p>
+          </header>
+
+          <div class="machine-workspace">
+            <section class="program-panel" aria-labelledby="program-title">
+              <h3 id="program-title">Program</h3>
+              <ol class="program-list">
+                <li data-program-instruction><span>00</span><code>SET_LOW</code></li>
+                <li data-program-instruction><span>01</span><code>FLIP</code></li>
+                <li data-program-instruction><span>02</span><code>FLIP</code></li>
+                <li data-program-instruction><span>03</span><code>HALT</code></li>
+              </ol>
+              <div class="machine-controls">
+                <button type="button" class="control-primary" data-action-step>Step</button>
+                <button type="button" data-action-run>Run</button>
+                <button type="button" data-action-reset>Reset</button>
+              </div>
+            </section>
+
+            <section class="cell-panel" aria-labelledby="cell-title">
+              <div class="cell-panel__heading">
+                <h3 id="cell-title">Cell</h3>
+                <span>1 logical bit</span>
+              </div>
+              <div class="machine-cell" data-machine-cell data-value="low">0</div>
+              <div class="machine-cell__name" data-machine-cell-name>low</div>
+              <dl class="machine-state">
+                <div><dt>pc</dt><dd data-machine-pc>0</dd></div>
+                <div><dt>status</dt><dd data-machine-status>ready</dd></div>
+                <div><dt>steps</dt><dd data-machine-steps>0</dd></div>
+              </dl>
+            </section>
+
+            <section class="trace-panel" aria-labelledby="trace-title">
+              <div class="trace-panel__heading">
+                <h3 id="trace-title">Structured trace</h3>
+                <button type="button" class="quiet-button" data-action-export>Export JSON</button>
+              </div>
+              <ol class="trace-list" data-machine-trace aria-live="polite"></ol>
+            </section>
+          </div>
+          <p class="laboratory__caption">
+            The interface calls the same pure transition function used by the
+            tests. Animation timing is presentation; sequence numbers are the
+            canonical execution order.
+          </p>
+        </section>
+
+        <div class="article-shell article-shell--after-lab">
+          <div class="article-body">
+            <section id="proof" class="reading-section proof-section" data-reveal>
+              <p class="section-kicker">5 · First proposition</p>
+              <h2>Return after two negations.</h2>
+              <p>
+                We claim that applying <code>not</code> twice returns every Bit to
+                itself. The universal symbol ranges over the two constructed
+                values of Bit—nothing more.
+              </p>
+              <div class="theorem-statement">
+                <span>Theorem · conmath.bit.double-negation.v1</span>
+                <p>∀ b : Bit,<br>not(not(b)) = b</p>
+              </div>
+              <p>
+                A proof by cases must provide evidence for <code>low</code> and
+                <code>high</code>. Each branch normalizes both sides, then applies
+                reflexivity only if they are identical.
+              </p>
+
+              <div class="proof-lab">
+                <div class="proof-tree" aria-label="Proof term">
+                  <div class="proof-node proof-node--root">cases b</div>
+                  <div class="proof-branches" aria-hidden="true"><i></i><i></i></div>
+                  <div class="proof-leaves">
+                    <div class="proof-node"><span>b = low</span>refl</div>
+                    <div class="proof-node"><span>b = high</span>refl</div>
+                  </div>
+                </div>
+                <div class="proof-console">
+                  <div class="proof-console__status">
+                    <span>Kernel result</span>
+                    <strong data-proof-status>not checked</strong>
+                  </div>
+                  <button type="button" class="control-primary" data-action-verify>Check proof</button>
+                  <ol data-proof-trace aria-live="polite">
+                    <li><span>waiting</span><span>run the checker</span></li>
+                  </ol>
+                </div>
+              </div>
+              <aside class="margin-note">
+                The checker can reject bad evidence or report resource
+                exhaustion. Exhaustion is not treated as falsity.
+              </aside>
+            </section>
+
+            <section id="account" class="reading-section" data-reveal>
+              <p class="section-kicker">6 · Resource account</p>
+              <h2>What did this construction require?</h2>
+              <div class="resource-account">
+                <div><span>01</span><strong>logical bit</strong><small>to represent a Bit value</small></div>
+                <div><span>03</span><strong>proof nodes</strong><small data-proof-nodes>after checking: —</small></div>
+                <div><span>04</span><strong>normalizations</strong><small data-normalization-steps>after checking: —</small></div>
+              </div>
+              <p>
+                These are model-level costs. The JavaScript runtime, DOM, and
+                browser allocate additional host memory that is not presented as
+                part of the mathematical construction.
+              </p>
+            </section>
+
+            <section class="reading-section boundary-section" data-reveal>
+              <p class="section-kicker">Boundary</p>
+              <h2>We have not constructed a number.</h2>
+              <p>
+                We have two named values, a finite operation, a finite machine,
+                and one checked proposition. Calling the encodings <code>0</code>
+                and <code>1</code> does not yet give us counting, succession, or
+                arithmetic. Those must be built.
+              </p>
+            </section>
+          </div>
+        </div>
+
+        <nav class="chapter-next" aria-label="Next chapter">
+          <span>Next construction · planned</span>
+          <strong>02 · Finite Sequences</strong>
+          <p>Place distinctions beside one another without assuming an endless sequence.</p>
+        </nav>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <span>Conmath · chapter 01 · draft 0.1</span>
+      <a href="../../reference/">Definitions and background</a>
+    </footer>
+  </body>
+</html>

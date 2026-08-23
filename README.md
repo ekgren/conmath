@@ -1,40 +1,44 @@
-# Conmath: Naive Constructive Mathematics
+# Conmath
 
-Welcome to the Conmath repository! This is a place for exploring and learning about constructive mathematics in a naive 
-and experimental way.
+An executable, finite mathematics book.
 
-## What is constructive mathematics?
+Conmath develops constructive mathematics alongside an explicitly implementable
+computer. Definitions, programs, proofs, and resource accounts are read
+together. The archived Python prototype is not part of the new system.
 
-Constructive mathematics is a branch of mathematics that focuses on the construction of mathematical objects, rather 
-than just their existence or properties. This approach is inspired by the intuitionistic approach to mathematical logic, 
-which emphasizes the constructions and evidence behind mathematical statements.
+## First version
 
-# Table of Contents
-1. [Introduction](#introduction)
-2. [Computation](#computation)
-3. [Mathematics](#mathematics)
-    1. [Arithmetic](#arithmetic)
-    2. [Abstract Algebra](#abstract-algebra)
-3. [External Resources](#external-resources)
+- Static home page and book navigation
+- Chapter 1, **The First Distinction**
+- Executable one-bit machine
+- Minimal proof checker for double negation on `Bit`
+- Deterministic structured traces and JSON export
+- Build-time content and engine checks
 
-# Introduction
+## Run
 
-This repository is a place for exploring and learning about constructive mathematics in a naive and experimental way.
+Requires Node.js 20 or newer. No dependency installation is required.
 
-# Computation
+```sh
+npm run dev
+```
 
-Constructive mathematics is closely related to computation, as it emphasizes the construction of mathematical objects and proofs. This connection has led to the development of computational interpretations of constructive mathematics, such as the Curry-Howard correspondence, which relates constructive proofs to computer programs.
+Open <http://127.0.0.1:4173>.
 
-# Mathematics
-Mathematics is the domain of all languages, in the widest sense of the word.
+## Verify
 
-## Arithmetic
-Deals with numbers and basic operations such as addition, subtraction, multiplication, and division.
+```sh
+npm run check
+```
 
-## Abstract Algebra
-Deals with algebraic structures such as groups, rings, and fields.
+## Repository map
 
-# External Resources
+- `site/` — static book and interactive laboratory
+- `site/assets/engine/` — pure executable foundation
+- `tests/` — behavioral and determinism checks
+- `docs/` — normative foundation and design records
+- `ARCHITECTURE.md` — dependency and trust boundaries
+- `AGENTS.md` — short navigation map for coding agents
 
-- [Constructive Mathematics](https://plato.stanford.edu/entries/mathematics-constructive/) - An overview of constructive mathematics from the Stanford Encyclopedia of Philosophy.
-- [Constructive Mathematics](https://en.wikipedia.org/wiki/Constructive_mathematics) - The Wikipedia page on constructive mathematics.
+The previous repository is preserved by the Git tag
+`archive/python-prototype-2026-08-23`. It imposes no compatibility requirements.
