@@ -1,74 +1,77 @@
 # Foundation charter
 
-Status: normative draft 0.2
+Status: accepted project commitments, 17 September 2026.
+This is not yet a formal calculus or a soundness theorem.
 
-## Commitments
+## Constructions and state
 
-1. Conmath claims only explicitly constructed values.
-2. Every value has a finite representation under a declared resource envelope.
-3. No type silently denotes a completed infinity.
-4. Operations expose overflow, partiality, or widening explicitly.
-5. Proofs are finite evidence checked by an executable kernel.
-6. Quantification ranges over a declared domain; finite enumeration and an extensible theory are distinct.
-7. Resource exhaustion never establishes falsity or absence of an inhabitant.
-8. Mathematical cost and host-simulator cost are different measurements.
-9. Conventional mathematics is explained before Conmath departs from it.
-10. The trusted system stays small enough to inspect.
-11. State changes are explicit. A stateful reference must identify the state or snapshot it describes.
-12. Finite memory does not imply termination; a finite step budget bounds an execution attempt.
-13. Bounded hardware and mutable state do not establish consistency or invalidate incompleteness theorems.
+1. Objects admitted by the system have finite, explicit representations.
+2. A collection is constructed; a predicate alone does not populate it.
+3. Explicitly constructed finite collections are allowed. Completed infinite
+   collections and silently performed infinite work are not.
+4. Computation transforms a specified state through defined operations.
+5. Claims about mutable objects or membership identify the relevant state.
+6. The substrate must explain storage, access, instructions, and their costs.
+   A physical hardware tour is not a prerequisite for learning the mathematics.
 
-## Implemented domains and accounts
+## Resource constraints
 
-- Bit: low/high, displayed as 0/1; double negation checked by finite cases.
-- Ideal digital logic: CMOS inverter switch state, NAND, edge-triggered storage.
-- Word machine: four 4-bit data words, four 4-bit ROM instructions, 4-bit A,
-  2-bit PC, 4-bit IR, 8-bit fuel, and four control states encoded in 2 bits.
-  Model storage: 52 bits. UI history and host step count are excluded.
-- One instruction step fetches, decodes, and executes atomically. PC remains at
-  HALT; other instructions advance it modulo four. Exhaustion does not execute
-  an instruction. HALT consumes one step. No analog timing claims.
-- Allocator: bounded payload slots. Metadata/code storage is excluded explicitly.
-  Failed append preserves the previous collection.
-- Checked 4-bit addition: exact result in 0..15 or overflow; commutativity compares
-  the full tagged result, including overflow.
-- Dyadic enclosure of sqrt(2): exact integer comparisons, with a limit on the bit
-  length of each arithmetic integer, including squared intermediates. This is
-  not a total RAM budget. Host preflight may compute beyond that model limit;
-  no over-limit result is admitted as a successful refinement. Failure preserves
-  the last valid enclosure. Geometric rendering is approximate.
+Every execution has a declared finite step and memory envelope. Each elementary
+instruction does bounded work. Operations must not hide iteration, arbitrary-size
+arithmetic, bulk copying, or allocation inside an unexplained unit-cost step.
 
-## Proposed foundation; not implemented as a general calculus
+Success produces a specified completed result. Exhaustion and non-completion are
+failure: a negative result for the computation under those constraints.
+An implementation may expose `None`, an
+error, or a tagged exhaustion result. A boolean `false` used to report operational
+failure must not be confused with a proof of the proposition's negation.
 
-A construction may have the interface:
+A stopped state may be retained for debugging. It is not a completed construction
+or a proof. Resume, rollback, and transactional semantics are not requirements for
+the initial foundation; introduce them only if needed and account for their work.
 
-```
-construct(input, state, budget)
-  -> ok(value, newState, remainingBudget)
-   | rejected(reason)
-   | exhausted(resource)
-```
+Model memory and model steps are distinct from JavaScript/browser overhead.
+Both may be measured, but only the specified model supports formal cost claims.
 
-A type describes representations and validity evidence. A constructor and its
-resource-dependent outcome do not alone define a type or a set. Set-like
-collections need equality, membership, duplicate, and snapshot semantics.
-A general stateful type system still requires formation, typing, operational
-rules, and soundness proofs.
+## Proof and prediction
 
-A fixed finite structure is not a model of all Peano arithmetic axioms.
-We do not claim to resolve the barber specification by changing its meaning over
-time, nor to evade Gödel by running a formal theory on finite hardware.
+Proofs are finite evidence checked against explicit inference rules by a small
+kernel. Checking is itself a resource-bounded computation. It succeeds with
+accepted evidence or fails with a reason, such as invalid evidence or resource
+exhaustion. Preserve that reason without treating exhaustion as a third outcome
+outside success/failure.
 
-## Route toward analysis
+The intended destination includes generalizable proofs: under stated input,
+state, and resource conditions, a program is guaranteed by the model to perform
+a stated construction without executing every variation in advance. This is a
+goal for the proof system, not an already established result.
 
-Floating-point arithmetic is a finite approximation with rounding laws to audit.
-The binary64 example is host arithmetic, outside the tiny instruction set.
-A candidate computable-real representation must include a convergence guarantee
-and precision-indexed rational evidence under sufficient finite resources.
-A permanently failing refiner does not establish an arbitrary-precision real.
-General computable-real equality is not assumed decidable.
+Such arguments must justify the rule that covers repeated steps, establish needed
+memory and step bounds, and expose all assumptions. Examples alone are not a
+proof of a general claim. No induction principle is silently imported.
 
-Open obligations: bounded rational arithmetic, compatible refinements, error
-propagation, resource semantics for composition, algebraic proofs, and
-constructive witnesses for analytic claims. The book labels these as research
-rather than presenting the interval demonstration as completed real analysis.
+Start with explicit trusted rules. Their mathematical justification, the kernel's
+implementation correctness, and the UI's faithful reporting are separate
+obligations. We do not attempt self-justification of the entire checker at launch.
+
+## Stateful examples and deeper questions
+
+The user's barber example uses a queue of people who have not yet shaved
+themselves. The barber is eligible before his first self-shave; afterward he no
+longer qualifies and is removed. This describes state-dependent eligibility and
+an update rule. It does not assert that a time-independent contradictory
+specification has acquired a solution. A full example must define the finite
+population, evidence of past actions, updates, and their resource costs.
+
+Investigate self-reference, incompleteness, and the foundations of analysis as the
+system develops. Finite computation alone is not a demonstrated refutation of
+Gödel's theorems. Determine which hypotheses and conclusions apply to our actual
+formal system rather than announcing an outcome in advance.
+
+## Mathematical route
+
+Foundations → arithmetic → algebra → abstract algebra → mathematics for physics.
+Numbers, equality, operations, and proofs must be built carefully. Conventional
+real numbers are not admitted as magically available exact data; any later
+approximation or constructive alternative needs its own representation,
+guarantees, resource semantics, and proofs. The exact route remains research.

@@ -1,33 +1,42 @@
 # Conmath agent map
 
-Clean-slate executable mathematics book. The archived Python prototype is not
-an API or source of truth.
+Static interactive mathematics book. The previous book is archived in Git;
+its code, layout, and mathematical choices are not requirements.
 
 ## Read first
 
-- `ARCHITECTURE.md` — boundaries, commands, trust model
-- `docs/foundation/charter.md` — normative mathematical commitments
-- `README.md` — current product surface
-- `book/README.md` — manuscript parts and assembly; edit parts, not generated HTML
+1. [README](README.md) — current implementation status and commands
+2. [Architecture](ARCHITECTURE.md) — ownership, boundaries, trust
+3. [Foundation charter](docs/foundation/charter.md) — accepted commitments
+4. [Book design](docs/design/book.md) — audience, writing, content structure
+5. [Active plan](docs/plans/first-chapter.md) — next deliverable and acceptance
 
 ## Commands
 
-- `npm run dev` — serve at `127.0.0.1:4173`
-- `npm run build` — assemble the continuous page from `book/parts/`
-- `npm run check` — engine tests plus content/link checks
+- `npm run check`: harness tests, repository links, catalogue, source boundaries
+- `npm run inventory`: JSON readiness report
+- No build or preview command exists yet; do not claim browser verification.
 
 ## Hard rules
 
-- No backwards compatibility with the archived Python project.
-- Keep formal engine modules independent of the DOM.
-- Deterministic execution: no timestamps or randomness in canonical traces.
-- Distinguish logical resource cost from JavaScript host overhead.
-- Resource exhaustion is not logical rejection.
-- Published proof claims must come from the checked engine.
+- No backwards compatibility with either archived implementation.
+- Finite representations, explicit state, bounded memory, bounded execution.
+- An instruction must not conceal unbounded work.
+- Exhaustion/non-completion is failure, a negative computation result; it does not by itself prove logical negation.
+- Keep the formal model's costs separate from JavaScript/browser overhead.
+- Keep `engine/` independent of browser code, clocks, network, and storage APIs.
+- Canonical execution and proof evidence must be deterministic.
+- Show the source actually executed; do not maintain a second illustrative copy.
+- Label proposed rules, prose arguments, experiments, and checked claims honestly.
+- Only a successful proof-checker result can earn a machine-checked label.
 - Update foundation documents when semantics change.
-- Prefer explicit small modules and structured events.
+- Use stable content IDs; put reading order in `book/catalog.json`.
+- Do not invent chapters, proved results, or performance evidence to fill the map.
+- Keep project knowledge and execution plans in this repository.
 
-## Active vertical slice
+## Navigation
 
-`Bit` → operations → finite machine → proof by cases → resource account →
-browser visualization.
+- [Documentation index](docs/index.md)
+- [Restart interview](docs/decisions/2026-09-17-restart.md)
+- [Quality and gaps](docs/quality.md)
+- [Observability contract](docs/design/observability.md)

@@ -1,4 +1,4 @@
-name: Check
+name: Repository checks
 
 on:
   pull_request:
@@ -17,3 +17,9 @@ jobs:
         with:
           node-version: 22
       - run: npm run check
+      - name: Record readiness
+        run: npm run --silent inventory > /tmp/conmath-readiness.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: readiness
+          path: /tmp/conmath-readiness.json

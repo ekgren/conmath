@@ -1,52 +1,59 @@
 # Conmath
 
-An executable, finite mathematics book, read as one continuous page.
+An interactive book about mathematics built from finite constructions, explicit
+computation, and checked proofs.
 
-Build a tiny computer from ideal switches and logic. Observe its memory,
-registers, instructions, and finite budgets; then develop constructive
-mathematics with explicit evidence and resource limits.
+The book will develop foundations, arithmetic, algebra, and eventually the
+mathematics needed for physics. Readers will see and run the code behind the
+examples and proofs in their browser. The published book will be entirely static;
+no computation backend is required.
 
-## Current surface
+## Current state
 
-- Anchored sections, persistent contents, marginal notes, responsive inline figures
-- Interactive CMOS inverter, NAND table, and clocked bit
-- Four-bit register machine with colored memory grids and deterministic trace export
-- Bounded allocation and checked finite proofs
-- Floating-point grouping example and exact bounded refinement of a sqrt(2) enclosure
-- Explicit research direction for stateful constructions and analysis
+**Design and repository harness. No new chapters, execution model, or proof
+checker have been implemented yet.** The previous book was deliberately removed.
+The first task is one carefully developed opening chapter, not a replacement
+computer tour or a complete arithmetic textbook.
 
-This is not yet a general type theory, real-number library, or proof assistant.
+- [Agreed design](docs/design/book.md)
+- [Foundation commitments](docs/foundation/charter.md)
+- [Interview and decisions](docs/decisions/2026-09-17-restart.md)
+- [First chapter plan](docs/plans/first-chapter.md)
+- [Evidence and known gaps](docs/quality.md)
+- [Architecture](ARCHITECTURE.md)
+- [Documentation index](docs/index.md)
 
-## Run and verify
+## Work locally
 
-Node.js 20 or newer. No dependencies to install.
+Use Node.js 22 or newer and npm. There are no package dependencies to install.
 
 ```sh
-npm run dev
-```
-
-Open <http://127.0.0.1:4173>. Manuscript edits rebuild automatically; refresh to see
-changes. Other assets are served directly.
-
-```sh
-npm run build
 npm run check
+npm run inventory
 ```
 
-The check rejects stale assembled HTML and broken anchors/assets, and runs
-engine behavior, resource-boundary, and determinism tests.
+`check` runs harness regression tests, validates documentation links and the book
+catalogue, and checks source boundaries. `inventory` emits a JSON readiness report
+for agents and maintainers. These commands do not prove any mathematical claims.
+
+There is no site to serve yet. Build, preview, and browser checks belong to the
+first chapter milestone. Its delivery must include them before the milestone can
+be called complete.
 
 ## Repository map
 
-- `book/README.md` — manuscript map for readers of the source
-- `book/parts/` — independent HTML fragments in reading order
-- `site/index.html` — generated, committed single-page book; do not edit directly
-- `site/assets/book.js` — browser interaction controllers
-- `site/assets/engine/` — pure executable models and checkers
-- `tests/` — behavioral checks
-- `docs/foundation/charter.md` — normative commitments and proposed semantics
-- `docs/design/` — editorial and observability records
-- `ARCHITECTURE.md` — dependency and trust boundaries
+- [book/](book/README.md): reading order, parts, chapters, and sections
+- [concepts/](concepts/README.md): separately addressable concept references
+- [engine/](engine/README.md): future mathematical execution and proof modules
+- [web/](web/README.md): future browser presentation and static publishing
+- [docs/](docs/index.md): decisions, specifications, plans, and evidence
+- `scripts/`: executable repository checks
+- `tests/`: regression tests for those checks; later, engine and browser tests
 
-The archived Python prototype is not a compatibility target. It remains at
-`archive/python-prototype-2026-08-23`.
+## Previous work
+
+The complete pre-reset book, including previously ignored manuscript fragments,
+was committed and pushed as
+[df6b32b](https://github.com/ekgren/conmath/commit/df6b32baa4977354af9765cc4b5e73c63bc7f9bf).
+The earlier Python prototype remains in Git history. Neither is a compatibility
+requirement or an authority for the new foundations.

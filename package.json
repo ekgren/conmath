@@ -3,14 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "description": "A resource-aware constructive mathematics book",
   "scripts": {
-    "build": "node scripts/build-book.mjs",
-    "dev": "node scripts/serve.mjs",
-    "test": "node --test",
-    "check:content": "node scripts/check-content.mjs",
-    "check": "node scripts/build-book.mjs --check && npm run test && npm run check:content"
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run test && node scripts/check.mjs",
+    "inventory": "node scripts/check.mjs --json"
   },
-  "engines": {
-    "node": ">=20"
-  }
+  "engines": { "node": ">=22" }
 }

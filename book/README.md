@@ -1,23 +1,18 @@
-# Manuscript map
+# Manuscript
 
-One scrollable page; independently editable source parts. Stable section IDs
-are public links. Keep all reading content in this page.
+The new book has no authored chapters yet. [catalog.json](catalog.json) is the
+single map of planned parts, chapters, concepts, reading order, and prerequisites.
 
-- `parts/00-opening.html`: document shell, contents, introduction
-- `parts/01-transistors.html`: CMOS inverter
-- `parts/02-logic.html`: Bit, NAND, Boolean composition
-- `parts/03-memory.html`: stored state, clocked register
-- `parts/04-computer.html`: word machine, registers, memory, trace
-- `parts/05-bounds.html`: allocation and proposed type interface
-- `parts/06-proof.html`: checked Bit proof, paradox and incompleteness boundaries
-- `parts/07-numbers.html`: bounded arithmetic, rounding, exact enclosures
-- `parts/08-references.html`: sources and editorial influences
-- `parts/09-closing.html`: document footer
+Future chapter path: `book/parts/<part-id>/<chapter-id>.md`.
+Use headings for sections and stable explicit IDs when publication begins.
+Each chapter is a separate published page; do not reassemble a continuous book.
 
-`npm run build` assembles the fragments into committed `site/index.html`.
-`npm run dev` builds first and rebuilds manuscript edits while serving.
-`npm run check` rejects stale output and broken section/asset links.
+The catalogue's `parts` order and each part's `chapters` order define the main
+reading path. Planned entries have `source: null`. Draft or ready entries need an
+existing source file. A ready entry may only depend on other ready entries.
 
-Diagrams and controllers: `site/assets/book.js`, `site/assets/styles.css`.
-Mathematical behavior: pure `site/assets/engine/` modules, with `tests/` coverage.
-Proof status must follow an engine result. Label proposed semantics explicitly.
+Concept references live in [concepts/](../concepts/README.md). Engine behavior
+lives in [engine/](../engine/README.md). Code excerpts must eventually be sourced
+from executable modules rather than copied into the manuscript.
+
+Read the [book design](../docs/design/book.md) before adding content.

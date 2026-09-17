@@ -2,10 +2,8 @@
 
 ## Unreleased
 
-- Assemble a continuous, anchored book from modular manuscript parts, with interactive transistor and logic diagrams, clocked storage, register and memory grids, bounded allocation, finite proofs, and exact interval refinement toward analysis.
+- Preserve the previous executable book and all manuscript sources in commit `df6b32b` before removing it from the active tree.
+- Restart Conmath with an explicit foundation charter, multi-page book structure, editorial direction, recorded design interview, and first-chapter plan.
+- Add a dependency-free repository harness for documentation links, content structure, source boundaries, and machine-readable readiness reporting.
 
-- Simplify the book to a short introduction and one readable chapter, with step-by-step execution and proof checking inline and technical details tucked away.
-
-## 0.1.0 - 2026-08-23
-
-- Launch the clean-slate Conmath site with an executable first chapter, finite Bit machine, checked proof, deterministic traces, responsive editorial design, and agent-facing repository harness.
+Earlier releases and implementation details remain in Git history.
