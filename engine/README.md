@@ -1,11 +1,10 @@
 # Mathematical engine
 
-Not implemented. The old engines were removed intentionally.
+[successor.py](successor.py) is the displayed seven-line construction.
+[memory.py](memory.py) defines checked reads, writes, and the finite budget.
+[evidence.py](evidence.py) independently checks an individual execution record.
+It is not a general theorem prover.
 
-This directory will contain finite representations, deterministic machine
-transitions, resource accounting, and a small proof checker. It must run without
-the DOM, browser APIs, clocks, randomness, or a network.
-
-Read the [charter](../docs/foundation/charter.md) and
-[model brief](../docs/design/execution-model.md). Specify the model before
-publishing an executable mathematical claim. Keep modules small and explicit.
+The [model specification](../docs/design/row-machine.md) states the cost accounts,
+exclusions, and trusted rules. Python runs through locally bundled Pyodide in a
+browser worker. The engine has no DOM, network, clock, or storage dependencies.

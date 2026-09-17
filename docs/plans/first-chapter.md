@@ -1,6 +1,6 @@
 # First chapter: active plan
 
-Status: planned. Scope approved in the 17 September 2026 interview.
+Status: implemented first reading draft; awaiting user review.
 
 ## Outcome
 
@@ -16,18 +16,18 @@ voice, mathematical approach, and structure before expanding toward addition.
 - [x] Record the interview, accepted commitments, open choices, and content map.
 - [x] Add executable repository checks and CI without new package dependencies.
 
-## First chapter — not started
+## First chapter — review draft
 
-- [ ] Propose the smallest suitable finite execution model; specify encodings,
+- [x] Propose the smallest suitable finite execution model; specify encodings,
       instructions, storage, step charging, validation, and non-completion.
-- [ ] Draft a foundations-led opening and linked concept explanations.
-- [ ] Implement the construction and its deterministic, bounded execution.
-- [ ] Define a minimal proof language and checker for the chapter's exact claim.
-- [ ] Explain trusted rules and why they justify that claim.
-- [ ] Display the actual runnable source alongside prose and evidence.
-- [ ] Build separate static pages with a clear contents page and reading path.
-- [ ] Add notation support and basic book typography without elaborate layouts.
-- [ ] Add mathematical, boundary, content, build, and browser acceptance tests.
+- [x] Draft a foundations-led opening and linked concept explanations.
+- [x] Implement the construction and its deterministic, bounded execution.
+- [x] Define a minimal proof language and checker for the chapter's exact claim.
+- [x] Explain trusted rules and why they justify that claim.
+- [x] Display the actual runnable source alongside prose and evidence.
+- [x] Build separate static pages with a clear contents page and reading path.
+- [x] Add notation support and basic book typography without elaborate layouts.
+- [x] Add mathematical, boundary, content, build, and browser acceptance tests.
 - [ ] Review the opening with the user before writing the remaining chapters.
 
 ## Acceptance evidence
@@ -47,11 +47,14 @@ voice, mathematical approach, and structure before expanding toward addition.
 
 ## Open implementation decisions
 
-Exact machine, instruction encoding, inference rules, first theorem, publishing
-format, font and notation tooling. The user delegated routine choices; make
-concrete proposals based on this chapter rather than reopening the interview.
+The revised candidate is specified in [Copy successor](../design/row-machine.md).
+It uses actual Python, sixteen data cells, a bounded execution-record checker, Markdown publishing,
+local system typography, and native MathML. These remain reviewable choices, not
+a commitment to use this exact machine for the whole book. General proof rules
+and full checker-memory accounting remain open.
 
 ## Verification log
 
-The repository restart is verified separately in [quality](../quality.md).
-No first-chapter implementation, formal proof, or browser acceptance exists yet.
+Local implementation and browser evidence is recorded in [quality](../quality.md).
+The [QA inventory](../review-checklist.md) maps the reviewable controls and claims.
+No deployment or remote CI result is claimed for this uncommitted review draft.

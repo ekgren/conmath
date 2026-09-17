@@ -66,6 +66,10 @@ export function checkMarkdown(root, name) {
 export function checkEngineSource(name, source) {
   const errors = [];
   const reject = (message) => errors.push(`${name}: ${message}`);
+  if (name.endsWith('.py')) {
+    if (/^\s*(?:from|import)\s/m.test(source)) reject('Python engine imports are forbidden in this slice');
+    if (/\b(?:__import__|exec|eval|open|compile)\s*\(/.test(source)) reject('Python host access or dynamic code is forbidden');
+  }
   if (/\b(?:window|document|navigator|fetch|XMLHttpRequest|WebSocket|localStorage|sessionStorage|indexedDB|performance|Date|crypto|process|globalThis|setTimeout|setInterval|requestAnimationFrame|Worker|SharedArrayBuffer|Atomics)\b|Math\s*\.\s*random\b/.test(source)) {
     reject('engine contains a forbidden host API');
   }

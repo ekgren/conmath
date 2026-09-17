@@ -1,0 +1,13 @@
+<figure class="experiment" id="row-experiment" aria-labelledby="experiment-title">
+  <figcaption><span class="eyebrow">Example 1</span><h3 id="experiment-title">Copy, then add a mark</h3></figcaption>
+  <noscript><p>The program and explanation are readable without JavaScript. Enable it to run Python in your browser.</p></noscript>
+  <form id="configuration"><label>Input length <select id="marks" aria-label="Input length"><option>0</option><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label><label>Step budget <input id="fuel" type="number" min="0" max="9" value="4" required></label></form>
+  <p class="memory-label">Source <code>0…7</code> <span>read from here</span></p>
+  <div id="source-cells" class="cells" role="img" aria-label="Source: three marks"><span class="marked">Ⅰ</span><span class="marked">Ⅰ</span><span class="marked">Ⅰ</span><span>·</span><span>·</span><span>·</span><span>·</span><span>·</span></div>
+  <p class="memory-label">Target <code>8…15</code> <span>write here</span></p>
+  <div id="cells" class="cells" role="img" aria-label="Target: eight blank cells"><span>·</span><span>·</span><span>·</span><span>·</span><span>·</span><span>·</span><span>·</span><span>·</span></div>
+  <div class="controls"><button id="run" type="button" disabled>Run program</button><button id="reset" class="quiet" type="button" disabled>Reset</button></div>
+  <p id="run-status" class="result" role="status" aria-live="polite">Loading Python locally…</p>
+  <p id="resource-use" class="caption">16 data cells reserved. Each charged step copies one mark or writes the final mark.</p>
+  <details><summary>Inspect reads, writes, and evidence</summary><ol id="trace"><li>No operations recorded.</li></ol><button id="check-proof" class="secondary" type="button" disabled>Check this execution</button><p id="proof-status" role="status" aria-live="polite">Run the program to produce evidence.</p><button id="export" class="quiet" type="button" disabled>Download evidence</button></details>
+</figure>

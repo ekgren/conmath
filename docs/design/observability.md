@@ -1,6 +1,7 @@
 # Observability and verification
 
-Status: repository harness implemented; mathematical and browser contracts planned.
+Status: repository, opening-machine, and browser checks implemented. The
+[harness runbook](../harness.md) maps the current implementation and its limits.
 
 Apply [Harness engineering](https://openai.com/index/harness-engineering/) through
 small navigable documentation, executable constraints, reproducible behavior, and
@@ -22,7 +23,7 @@ static book merely because the article used one.
 Inventory is a readiness report, not proof or browser evidence. Passing checks
 with an empty engine must not be represented as verified mathematics.
 
-## With the first chapter
+## First-chapter contract
 
 - Expose reproducible program/input/model/budget descriptions.
 - Emit structured transitions with sequence numbers, instruction/state changes,

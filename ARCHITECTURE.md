@@ -1,6 +1,6 @@
 # Architecture
 
-Status: accepted boundaries; mathematical engine and publisher not implemented.
+Status: first chapter, static publisher, and individual execution checker implemented as a review draft.
 
 ## Ownership
 
@@ -15,8 +15,8 @@ Status: accepted boundaries; mathematical engine and publisher not implemented.
 - `tests/` owns executable evidence about harness and implementation behavior.
 - `docs/` owns commitments, technical specifications, decisions, and plans.
 
-No empty mathematical implementation is presented as a kernel. Directory README
-files mark boundaries, not completed features.
+The opening engine implements the [copy-successor specification](docs/design/row-machine.md).
+The proof checker accepts individual execution certificates; it is not a general calculus.
 
 ## Dependency direction
 
@@ -26,7 +26,8 @@ representations and rules → execution / proof checking → structured evidence
 manuscript + catalogue ──────────────────────────────→ browser presentation
 ```
 
-The engine may import only relative modules within `engine/`. It must not import
+Python engine files currently use no imports. JavaScript engine files may import
+only relative modules within `engine/`. It must not import
 host packages or `web/`. Presentation consumes engine results; it cannot declare
 proof acceptance itself. A static publisher may read manuscript and engine source
 at build time. The reader's browser needs no server-side execution or API keys.
@@ -50,16 +51,15 @@ control state, and proof-checker storage. State exclusions explicitly. Browser
 objects, rendering, and debugging history belong to a separate host account.
 
 Memory sizes and step counts must themselves have bounded representations. A
-single JavaScript expression is not automatically one elementary model step.
+single Python or JavaScript expression is not automatically one elementary model step.
 Details are open in the [execution model brief](docs/design/execution-model.md).
 
 ## Enforcement today
 
-`npm run check` validates the catalogue, local Markdown links, required repository
-entry points, and conservative source-boundary rules. Boundary checks reject
+`npm run check` runs unit tests, catalogue and Markdown-link gates, source-boundary
+lint, deterministic static publishing, and browser acceptance. Boundary checks reject
 recognized forbidden engine APIs and imports; they are a lint gate, not a
-JavaScript sandbox or a soundness proof. Regression tests exercise failure cases.
+runtime sandbox or a soundness proof. Regression tests exercise failure cases.
 
-[Observability](docs/design/observability.md) specifies the runtime and browser
-checks that must be added with executable chapters. [Quality](docs/quality.md)
-separates these future obligations from current evidence.
+The [harness runbook](docs/harness.md) documents current runtime and browser
+evidence. [Quality](docs/quality.md) separates implemented checks from open obligations.

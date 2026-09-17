@@ -16,9 +16,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
       - run: npm run check
       - name: Record readiness
         run: npm run --silent inventory > /tmp/conmath-readiness.json
+      - name: Browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-evidence
+          path: artifacts/
       - uses: actions/upload-artifact@v4
         with:
           name: readiness

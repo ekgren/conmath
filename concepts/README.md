@@ -1,11 +1,9 @@
 # Concept reference
 
-No concept pages have been authored yet. Entries in the
-[book catalogue](../book/catalog.json) are planned.
+Five draft reference pages support the opening chapter. Their IDs, source paths,
+prerequisites, and status live in the [catalogue](../book/catalog.json).
 
-Future path: `concepts/<concept-id>.md`. Each page gives a focused explanation,
-precise definitions or rules, assumptions, examples, and links to the chapters
-that introduce and use it. Record prerequisites in the catalogue.
-
-Distinguish accepted definitions from proposals and checked claims from prose
-arguments. Do not duplicate a formal definition in multiple authoritative places.
+Each `concepts/<concept-id>.md` owns one focused definition or explanation. Link
+from the reading path rather than repeating authoritative rules in many places.
+Distinguish proposals, prose justification, execution evidence, and general proofs.
+These pages are under review with the opening, not an approved final foundation.

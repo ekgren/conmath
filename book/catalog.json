@@ -1,20 +1,105 @@
 {
   "version": 1,
   "parts": [
-    { "id": "foundations", "title": "Foundations", "chapters": ["objects-and-constructions", "counting-and-addition"] },
-    { "id": "arithmetic", "title": "Arithmetic", "chapters": [] },
-    { "id": "algebra", "title": "Algebra and abstract algebra", "chapters": [] },
-    { "id": "physics", "title": "Toward physics", "chapters": [] }
+    {
+      "id": "foundations",
+      "title": "Foundations",
+      "chapters": [
+        "objects-and-constructions",
+        "counting-and-addition"
+      ]
+    },
+    {
+      "id": "arithmetic",
+      "title": "Arithmetic",
+      "chapters": []
+    },
+    {
+      "id": "algebra",
+      "title": "Algebra and abstract algebra",
+      "chapters": []
+    },
+    {
+      "id": "physics",
+      "title": "Toward physics",
+      "chapters": []
+    }
   ],
   "chapters": [
-    { "id": "objects-and-constructions", "title": "Objects and constructions", "status": "planned", "source": null, "requires": [], "concepts": ["representation", "equality", "state-and-steps", "resource-bounds", "proof-and-evidence"] },
-    { "id": "counting-and-addition", "title": "Counting and addition", "status": "planned", "source": null, "requires": ["objects-and-constructions"], "concepts": ["representation", "equality", "resource-bounds", "proof-and-evidence"] }
+    {
+      "id": "objects-and-constructions",
+      "title": "Objects and constructions",
+      "status": "draft",
+      "source": "book/parts/foundations/objects-and-constructions.md",
+      "requires": [],
+      "concepts": [
+        "representation",
+        "equality",
+        "state-and-steps",
+        "resource-bounds",
+        "proof-and-evidence"
+      ]
+    },
+    {
+      "id": "counting-and-addition",
+      "title": "Counting and addition",
+      "status": "planned",
+      "source": null,
+      "requires": [
+        "objects-and-constructions"
+      ],
+      "concepts": [
+        "representation",
+        "equality",
+        "resource-bounds",
+        "proof-and-evidence"
+      ]
+    }
   ],
   "concepts": [
-    { "id": "representation", "title": "Representation", "status": "planned", "source": null, "requires": [] },
-    { "id": "equality", "title": "Equality", "status": "planned", "source": null, "requires": ["representation"] },
-    { "id": "state-and-steps", "title": "State and steps", "status": "planned", "source": null, "requires": ["representation"] },
-    { "id": "resource-bounds", "title": "Resource bounds", "status": "planned", "source": null, "requires": ["state-and-steps"] },
-    { "id": "proof-and-evidence", "title": "Proof and evidence", "status": "planned", "source": null, "requires": ["representation", "resource-bounds"] }
+    {
+      "id": "representation",
+      "title": "Representation",
+      "status": "draft",
+      "source": "concepts/representation.md",
+      "requires": []
+    },
+    {
+      "id": "equality",
+      "title": "Equality",
+      "status": "draft",
+      "source": "concepts/equality.md",
+      "requires": [
+        "representation"
+      ]
+    },
+    {
+      "id": "state-and-steps",
+      "title": "State and steps",
+      "status": "draft",
+      "source": "concepts/state-and-steps.md",
+      "requires": [
+        "representation"
+      ]
+    },
+    {
+      "id": "resource-bounds",
+      "title": "Resource bounds",
+      "status": "draft",
+      "source": "concepts/resource-bounds.md",
+      "requires": [
+        "state-and-steps"
+      ]
+    },
+    {
+      "id": "proof-and-evidence",
+      "title": "Proof and evidence",
+      "status": "draft",
+      "source": "concepts/proof-and-evidence.md",
+      "requires": [
+        "representation",
+        "resource-bounds"
+      ]
+    }
   ]
 }

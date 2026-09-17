@@ -13,9 +13,12 @@ its code, layout, and mathematical choices are not requirements.
 
 ## Commands
 
-- `npm run check`: harness tests, repository links, catalogue, source boundaries
+- `npm run check`: unit/harness tests, repository gates, static build, browser acceptance
 - `npm run inventory`: JSON readiness report
-- No build or preview command exists yet; do not claim browser verification.
+- `npm run dev`: build and serve at port 4173; set `PORT` to isolate a checkout.
+- `npm run build`: publish into disposable `dist/`; never edit generated output.
+- `npm run test:browser`: browser tests; set `TEST_PORT` to isolate the test server.
+- See [harness runbook](docs/harness.md) and [QA inventory](docs/review-checklist.md).
 
 ## Hard rules
 

@@ -1,6 +1,7 @@
 # Execution model brief
 
-Status: requirements agreed; instruction set and encodings not selected.
+Status: general requirements agreed. [Row machine v1](row-machine.md) is the
+implemented candidate for the opening; a general machine remains unselected.
 
 ## Purpose
 

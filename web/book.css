@@ -1,0 +1,105 @@
+:root { color-scheme: light; --paper: #faf8f2; --ink: #272923; --muted: #64695e; --rule: #d4d3c8; --accent: #315b4b; }
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; scroll-padding-top: 2rem; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 19px; line-height: 1.75; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: .2em; }
+a:hover { color: var(--ink); }
+button, input, select { font: inherit; }
+button, summary, input, select, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.skip { position: absolute; top: -100px; left: 1rem; padding: .5rem; background: var(--paper); z-index: 2; }
+.skip:focus { top: .5rem; }
+.masthead { max-width: 1160px; margin: 0 auto; padding: 30px 34px 23px; border-bottom: 1px solid var(--rule); display: flex; align-items: baseline; gap: 26px; }
+.wordmark { color: var(--ink); font-size: 24px; letter-spacing: .09em; font-variant: small-caps; text-decoration: none; }
+.strapline { color: var(--muted); font-size: 14px; font-style: italic; }
+.masthead nav { display: flex; gap: 23px; margin-left: auto; font-size: 14px; }
+.masthead nav a { color: var(--ink); }
+.page-grid { max-width: 1160px; margin: 0 auto; padding: 64px 34px 80px; display: grid; grid-template-columns: 215px minmax(0, 690px); gap: 68px; }
+aside { align-self: start; position: sticky; top: 35px; font-size: 14px; line-height: 1.6; }
+.eyebrow { font-size: 11px; font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 500; text-transform: uppercase; letter-spacing: .16em; color: var(--muted); margin: 0 0 20px; }
+.side-title { font-size: 17px; margin: 0 0 24px; }
+aside ol { list-style: none; padding: 0; margin: 0 0 32px; border-top: 1px solid var(--rule); }
+aside li { padding: 10px 0; border-bottom: 1px solid var(--rule); }
+aside li a { color: var(--muted); text-decoration: none; }
+aside li a:hover { color: var(--accent); text-decoration: underline; }
+.back-link { font-size: 13px; }
+main { min-width: 0; }
+h1, h2, h3 { font-weight: normal; line-height: 1.18; text-wrap: balance; }
+h1 { font-size: clamp(38px, 4.4vw, 57px); letter-spacing: -.035em; margin: 0 0 34px; }
+h2 { font-size: 30px; letter-spacing: -.02em; margin: 54px 0 24px; }
+h3 { font-size: 27px; margin: 0 0 12px; }
+p { margin: 0 0 22px; }
+main > p:first-of-type:not(.eyebrow), .lede { font-size: 23px; line-height: 1.6; }
+main li { padding-left: .2em; margin-bottom: .55em; }
+main ol, main ul { padding-left: 1.4em; }
+strong { font-weight: bold; }
+.math, math { font-family: 'STIX Two Math', 'Cambria Math', Georgia, serif; }
+math[display='block'] { margin: 28px auto 32px; font-size: 27px; }
+.notation { display: flex; justify-content: center; gap: 44px; font-size: 31px; letter-spacing: .12em; margin: 28px 0; }
+.begin { display: inline-block; font-size: 17px; margin: 5px 0 30px; }
+.contents { margin-top: 22px; }
+.contents-part { border-top: 1px solid var(--rule); padding: 25px 0 22px; }
+.contents-part h2 { font-size: 25px; margin: 0 0 17px; }
+.contents-part h2 span { display: inline-block; width: 35px; font-size: 16px; color: var(--muted); }
+.contents-part ol { list-style: none; padding: 0 0 0 39px; font-size: 18px; }
+.contents-part li { margin: 0 0 15px; }
+.contents-part li a { display: flex; justify-content: space-between; }
+.contents-part small, .planned { display: block; font-size: 13px; color: var(--muted); }
+.planned { padding-left: 39px; }
+.concept-list { list-style: none; padding: 0; margin-top: 35px; }
+.concept-list li { border-top: 1px solid var(--rule); padding: 15px 0; margin: 0; }
+.concept-list a { display: flex; justify-content: space-between; }
+.experiment { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); margin: 32px 0; padding: 26px 0; }
+figcaption .eyebrow { margin-bottom: 11px; }
+figcaption p { color: var(--muted); font-size: 16px; }
+#configuration { display: flex; flex-wrap: wrap; gap: 18px; margin: 23px 0 30px; }
+label { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; line-height: 1.5; display: flex; flex-direction: column; gap: 7px; }
+input, select { min-height: 40px; border: 1px solid #a4a89b; border-radius: 0; color: var(--ink); background: transparent; padding: 7px 10px; font-size: 14px; }
+input { width: 100px; }
+.cells { display: grid; grid-template-columns: repeat(8, 1fr); border-left: 1px solid #b4b8aa; margin: 0 0 14px; }
+.cells span { border: 1px solid #b4b8aa; border-left: 0; display: flex; justify-content: center; align-items: center; height: 66px; font-size: 34px; color: var(--muted); position: relative; }
+.cells .marked { color: var(--ink); background: #eeeee4; }
+.cells .current::after { content: ''; position: absolute; bottom: -9px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 6px solid var(--accent); }
+.machine-position, .caption { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.controls { display: flex; flex-wrap: wrap; gap: 9px; margin: 22px 0; }
+button { border: 1px solid var(--accent); background: var(--accent); color: var(--paper); padding: 9px 14px; min-height: 42px; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; cursor: pointer; }
+button:hover:not(:disabled) { background: #244438; color: white; }
+button.secondary { background: transparent; color: var(--accent); }
+button.quiet { background: transparent; border-color: transparent; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+button:disabled { opacity: .45; cursor: default; }
+.result { font-size: 17px; margin-bottom: 8px; }
+.result[data-outcome='failure'] { font-weight: bold; }
+.proof-row { border-top: 1px solid var(--rule); padding-top: 18px; margin: 20px 0; }
+#proof-status { font-size: 14px; line-height: 1.65; margin: 12px 0 0; }
+summary { color: var(--accent); cursor: pointer; font-size: 15px; padding: 9px 0; }
+#trace { font-family: ui-monospace, monospace; font-size: 12px; list-style: none; padding: 0; line-height: 1.8; }
+#trace li { margin: 0; }
+.source { margin: 25px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+pre { overflow-x: auto; background: #eeeee6; padding: 18px; max-width: 100%; font: 12px/1.65 ui-monospace, monospace; tab-size: 2; }
+.endnote { margin-top: 52px; padding-top: 20px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 15px; font-style: italic; }
+footer { max-width: 1160px; margin: 0 auto; border-top: 1px solid var(--rule); padding: 24px 34px 45px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; gap: 20px; }
+@media (max-width: 900px) { .page-grid { grid-template-columns: 160px minmax(0, 1fr); gap: 35px; } .strapline { display: none; } }
+@media (max-width: 650px) {
+  body { font-size: 18px; line-height: 1.7; }
+  .masthead { padding: 21px 22px 18px; gap: 15px; }
+  .wordmark { font-size: 21px; }
+  .masthead nav { gap: 17px; font-size: 13px; }
+  .page-grid { display: block; padding: 26px 22px 48px; }
+  aside { position: static; border-bottom: 1px solid var(--rule); margin-bottom: 30px; padding-bottom: 16px; }
+  aside .eyebrow { margin-bottom: 9px; } aside .side-title { display: none; }
+  aside ol { display: flex; flex-wrap: wrap; gap: 8px 18px; border: 0; margin: 0; }
+  aside li { border: 0; padding: 0; font-size: 12px; } .back-link { display: none; }
+  h1 { font-size: 39px; } h2 { font-size: 27px; margin-top: 43px; }
+  main > p:first-of-type:not(.eyebrow), .lede { font-size: 21px; }
+  .cells span { height: 48px; font-size: 28px; }
+  #configuration { gap: 13px; } footer { padding: 22px; font-size: 11px; }
+}
+@media print { aside, .controls, #configuration, .proof-row, .masthead nav { display: none; } .page-grid { display: block; padding: 0; } body { background: white; font-size: 12pt; } }
+.program { font-size: 14px; line-height: 1.9; padding: 22px; border-left: 2px solid var(--accent); }
+.memory-label { display: flex; align-items: baseline; gap: 12px; font-size: 15px; margin: 22px 0 10px; }
+.memory-label code { font: 12px ui-monospace, monospace; }
+.memory-label span { margin-left: auto; color: var(--muted); font-size: 12px; }
+@media (max-width: 650px) {
+  pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .program { font-size: 12px; padding: 13px; line-height: 1.9; }
+}

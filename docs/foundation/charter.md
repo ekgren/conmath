@@ -30,7 +30,7 @@ A stopped state may be retained for debugging. It is not a completed constructio
 or a proof. Resume, rollback, and transactional semantics are not requirements for
 the initial foundation; introduce them only if needed and account for their work.
 
-Model memory and model steps are distinct from JavaScript/browser overhead.
+Model memory and model steps are distinct from Python interpreter and browser overhead.
 Both may be measured, but only the specified model supports formal cost claims.
 
 ## Proof and prediction
@@ -75,3 +75,11 @@ Numbers, equality, operations, and proofs must be built carefully. Conventional
 real numbers are not admitted as magically available exact data; any later
 approximation or constructive alternative needs its own representation,
 guarantees, resource semantics, and proofs. The exact route remains research.
+
+## First implementation under review
+
+[Row machine v1](../design/row-machine.md) implements a single finite successor
+construction and a bounded checker for its execution certificate. This is a
+review draft, not the general calculus. Its certificate-memory budget excludes
+checker working storage and code; it does not yet fulfill the eventual goal of
+a complete proof-computer resource account.

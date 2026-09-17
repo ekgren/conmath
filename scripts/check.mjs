@@ -27,7 +27,7 @@ try {
   errors.push(`Cannot read catalogue: ${error.message}`);
 }
 const markdown = files.filter((name) => name.endsWith('.md'));
-const engine = files.filter((name) => /^engine\/.*\.(?:mjs|js|ts)$/.test(name));
+const engine = files.filter((name) => /^engine\/.*\.(?:mjs|js|ts|py)$/.test(name));
 for (const name of markdown) errors.push(...checkMarkdown(root, name));
 for (const name of engine) errors.push(...checkEngineSource(name, read(name)));
 const entries = ['chapters', 'concepts'].flatMap((group) => Array.isArray(catalog?.[group]) ? catalog[group] : []);

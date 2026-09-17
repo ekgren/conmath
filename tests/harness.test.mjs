@@ -108,6 +108,10 @@ test('source inventory excludes generated output and refuses symlinks', (t) => {
 });
 
 test('engine permits local dependencies and rejects host coupling and dynamic loading', () => {
+  assert.deepEqual(checkEngineSource('engine/example.py', 'def identity(value):\n    return value'), []);
+  for (const code of ['import os', 'from js import document', '__import__("os")', 'open("file")', 'exec("code")']) {
+    assert.ok(checkEngineSource('engine/example.py', code).length > 0, code);
+  }
   const name = 'engine/machine.mjs';
   assert.deepEqual(checkEngineSource(name, "import { bit } from './values.mjs';\nexport const flip = x => x ^ 1;"), []);
   for (const code of [

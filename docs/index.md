@@ -10,6 +10,10 @@ Start with [current status](../README.md) and [architecture](../ARCHITECTURE.md)
 - [Observability](design/observability.md): evidence, diagnostics, and gates
 - [Writing references](references/influences.md): the user's inspirations
 
+- [Row machine v1](design/row-machine.md): implemented candidate and certificate rules
+- [Harness runbook](harness.md): commands, diagnostics, and maintenance loop
+- [Review checklist](review-checklist.md): visible controls and review criteria
+
 ## Decisions, work, and evidence
 
 - [Restart interview, 17 September 2026](decisions/2026-09-17-restart.md)

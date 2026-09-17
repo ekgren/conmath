@@ -1,59 +1,62 @@
 # Conmath
 
 An interactive book about mathematics built from finite constructions, explicit
-computation, and checked proofs.
+computation, and checked evidence. The published book is static; all reader
+computation runs in the browser.
 
-The book will develop foundations, arithmetic, algebra, and eventually the
-mathematics needed for physics. Readers will see and run the code behind the
-examples and proofs in their browser. The published book will be entirely static;
-no computation backend is required.
+## Current review
 
-## Current state
+**Chapter 1: Objects and constructions** is the first reading draft. It introduces
+rows of marks, a seven-line Python program with explicit memory access and failure,
+and a checker for individual execution certificates. Five concept pages support
+it. Counting, addition, and generalizable proofs await review of this opening.
 
-**Design and repository harness. No new chapters, execution model, or proof
-checker have been implemented yet.** The previous book was deliberately removed.
-The first task is one carefully developed opening chapter, not a replacement
-computer tour or a complete arithmetic textbook.
+The machine is a deliberately small candidate, not a completed general foundation.
+The data account reserves sixteen cells; interpreter and checker RAM are separate.
+The exact displayed Python runs locally through a bundled Pyodide WebAssembly runtime.
 
-- [Agreed design](docs/design/book.md)
-- [Foundation commitments](docs/foundation/charter.md)
-- [Interview and decisions](docs/decisions/2026-09-17-restart.md)
-- [First chapter plan](docs/plans/first-chapter.md)
-- [Evidence and known gaps](docs/quality.md)
-- [Architecture](ARCHITECTURE.md)
-- [Documentation index](docs/index.md)
+## Run locally
 
-## Work locally
+Use Node.js 22+ and npm.
 
-Use Node.js 22 or newer and npm. There are no package dependencies to install.
+```sh
+npm ci
+npx playwright install chromium
+npm run dev
+```
+
+Open <http://127.0.0.1:4173>. `PORT=4200 npm run dev` gives an isolated preview for
+another checkout. The preview serves generated static files; rerun the build after
+editing sources. No runtime API keys, external fonts, or services are required.
 
 ```sh
 npm run check
 npm run inventory
 ```
 
-`check` runs harness regression tests, validates documentation links and the book
-catalogue, and checks source boundaries. `inventory` emits a JSON readiness report
-for agents and maintainers. These commands do not prove any mathematical claims.
+`check` runs unit/harness tests, repository checks, the static build, and browser
+acceptance. Browser tests use port 4174 by default; set `TEST_PORT` to isolate a
+second run. Browser reports, screenshots, and failure traces are in ignored
+`artifacts/`. CI runs the same gate. `inventory` reports structural readiness only.
 
-There is no site to serve yet. Build, preview, and browser checks belong to the
-first chapter milestone. Its delivery must include them before the milestone can
-be called complete.
+## Review and source map
 
-## Repository map
+- [Opening manuscript](book/parts/foundations/objects-and-constructions.md)
+- [First-chapter plan and review boundary](docs/plans/first-chapter.md)
+- [Book design](docs/design/book.md) and [foundation charter](docs/foundation/charter.md)
+- [Machine and certificate specification](docs/design/row-machine.md)
+- [Harness runbook](docs/harness.md) and [quality evidence](docs/quality.md)
+- [Documentation index](docs/index.md) and [architecture](ARCHITECTURE.md)
 
-- [book/](book/README.md): reading order, parts, chapters, and sections
-- [concepts/](concepts/README.md): separately addressable concept references
-- [engine/](engine/README.md): future mathematical execution and proof modules
-- [web/](web/README.md): future browser presentation and static publishing
-- [docs/](docs/index.md): decisions, specifications, plans, and evidence
-- `scripts/`: executable repository checks
-- `tests/`: regression tests for those checks; later, engine and browser tests
+`book/` owns reading order and manuscript; `concepts/` owns reference prose;
+`engine/` owns executable rules; `web/` owns presentation; `scripts/` owns publishing
+and checks. `dist/` is disposable static output. Never edit it as source.
 
-## Previous work
+## Earlier work
 
-The complete pre-reset book, including previously ignored manuscript fragments,
-was committed and pushed as
+The previous book is preserved at
 [df6b32b](https://github.com/ekgren/conmath/commit/df6b32baa4977354af9765cc4b5e73c63bc7f9bf).
-The earlier Python prototype remains in Git history. Neither is a compatibility
-requirement or an authority for the new foundations.
+The earlier Python prototype also remains in Git history. Neither is a
+compatibility requirement or authority for the new foundations.
+
+The agreed restart is recorded in the [interview](docs/decisions/2026-09-17-restart.md).

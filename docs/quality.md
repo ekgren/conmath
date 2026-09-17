@@ -1,36 +1,53 @@
 # Quality and known gaps
 
-## Current evidence
+## Current implementation
 
-- Historical book: 18 tests and its content/build checks passed before archival.
-- Archive: commit `df6b32b` was pushed to `origin/main` before deletion.
-- New harness: `npm run check` exercises catalogue, link, and boundary failure
-  cases and validates this repository. Run it for current verification.
-- Readiness: `npm run inventory` reports planned/authored content and source counts.
+One draft chapter and five supporting concept pages. A seven-line Python successor
+program, sixteen-cell data memory, finite execution checker, deterministic static
+publisher, and browser presentation are implemented. The [model specification](design/row-machine.md)
+states costs, assumptions, and exclusions.
 
-Local verification on 17 September 2026: all 10 harness tests passed;
-structural checks passed for 17 Markdown documents and 7 planned content entries;
-`git diff --check` passed. There are 0 engine modules and 0 authored/ready entries.
-This receipt is local evidence; GitHub CI status must be checked separately.
+## Verification — 17 September 2026
 
-## Not implemented or verified
+- Local gate passed: 16 unit/harness tests, 7 browser scenarios, repository
+  checks, and static build. Browser tests were rerun after the mobile wrapping fix.
+- Unit checks cover editorial graphs, links, Python/JS dependency boundaries,
+  deterministic publishing, source parity, all 90 input/budget configurations,
+  deterministic access records, invalid inputs, forged evidence, and check budgets.
+- Browser checks cover actual Python execution, local asset requests, source
+  display, run/reset/check/export, step and memory failures, invalid inputs,
+  keyboard use, no-JS reading, worker-load failure, and 390px/1280px layouts.
+- Desktop figure and mobile program/checked-figure screenshots were inspected.
+  Mobile code wrapping was corrected after inspection. The live in-app review
+  verified Python readiness, execution, access record, and checker acceptance.
+- Artifacts are under ignored `artifacts/`; the figure exports canonical evidence.
+- No page overflow or uncaught errors appeared in successful browser acceptance.
 
-- No new authored chapter or concept page.
-- No formal machine specification or mathematical engine.
-- No proof calculus, proof checker, soundness argument, or checked theorem.
-- No static publisher, typography implementation, notation renderer, or browser UI.
-- No browser tests, hosted deployment, or runtime performance evidence.
+These are local checks. The updated CI workflow runs the same gates, but this
+review draft has not been pushed or verified by remote CI. No deployment claimed.
 
-These are deliberate gaps, not regressions hidden by a green harness. The
-[first chapter plan](plans/first-chapter.md) owns the next milestone.
+## Current review boundary
+
+Stop before counting/addition until the user reviews the opening's voice, pace,
+model, and typography. Content remains `draft` in the catalogue. A successful
+certificate check proves only the specified individual execution relative to the
+trusted rules. It is not a general theorem about all successor computations.
+
+## Open obligations
+
+- General reasoning rules, generalizable resource bounds, and a soundness argument.
+- Complete resource accounting: sixteen cells count data only, excluding indices,
+  interpreter, trace, checker scratch storage, JSON parsing, and browser objects.
+- A general machine suitable for later arithmetic; this example has two eight-cell regions.
+- Cross-browser acceptance beyond Chromium, richer notation, and a larger book.
+- Bounded external certificate parsing if uploads or untrusted certificates are introduced.
 
 ## Harness limits
 
 Source-boundary checks are conservative textual lint, not full program analysis.
-Markdown link checks cover ordinary inline links and heading/explicit-ID anchors;
-reference-style links and embedded HTML links need checker support before use.
-External URLs are recorded but are not fetched by offline repository checks.
-Structural checks do not decide whether mathematical prose is correct.
+Markdown checks cover ordinary inline links and supported anchors. External URLs
+are not fetched by offline repository checks. Static links and actual browser
+paths have separate tests. Structural tests do not establish mathematical truth.
 
-Keep evidence dated when adding manual or browser verification. Never transfer
-the archived book's test or proof claims to the new implementation.
+The previous book remains at `df6b32b`; its old proof claims and tests are not
+transferred to this implementation. See the [active plan](plans/first-chapter.md).
