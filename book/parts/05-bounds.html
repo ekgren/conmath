@@ -1,0 +1,18 @@
+<section id="bounds" aria-labelledby="bounds-title">
+  <div class="prose"><p class="section-number">5 / Making the limit part of the object</p><h2 id="bounds-title">A construction can run out of room <a class="permalink" href="#bounds" aria-label="Link to Bounds and types">#</a></h2>
+  <p>Finite memory alone does not guarantee termination: a machine can revisit a state and loop. A finite step budget bounds an attempt. Every larger budget is another finite allowance, not permission to finish infinitely many steps.</p>
+  <p class="definition"><strong>Design proposal 5.1 · Bounded construction.</strong> A construction consumes explicit state and resources, returning either a value with new state, a rejection, or resource exhaustion.</p><pre><code>construct(input, state, budget)
+  → ok(value, newState, remainingBudget)
+  | rejected(reason)
+  | exhausted(resource)</code></pre>
+  <p>A type specifies valid representations and evidence. A constructor may try to produce an inhabitant; a checker may try to validate one. The constructor’s inability to finish does not show that the type has no inhabitants.</p>
+  <aside class="sidenote">The allocator below is implemented. The general type-and-effect notation is a proposal, not yet a language or a verified typing calculus.</aside></div>
+  <figure class="interactive">
+    <div class="figure-heading"><span>Figure 5 · A bounded collection</span><label>Capacity <select id="allocation-capacity" disabled><option value="4" selected>4 cells</option><option value="8">8 cells</option></select></label></div>
+    <div id="allocation-grid" class="allocation-grid" aria-label="Allocation slots">Four available cells.</div>
+    <div class="controls"><button id="allocate" disabled>Append one Bit</button><button id="allocation-reset" disabled>Clear collection</button></div><p id="allocation-result" class="figure-result" role="status">0 of 4 cells occupied.</p>
+    <figcaption>Green here means occupied, as the slot labels indicate. Appending a zero still consumes a cell. This figure accounts only for payload capacity; allocator metadata and code require their own storage.</figcaption>
+  </figure>
+  <div class="prose"><p>For a set-like collection we must additionally define equality, membership, and duplicate handling. For a stateful reference we must specify which snapshot it describes. A changing container and a mathematical set are different objects; one does not define the other automatically.</p></div>
+</section>
+

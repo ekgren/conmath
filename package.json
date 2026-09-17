@@ -4,10 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "node scripts/build-book.mjs",
     "dev": "node scripts/serve.mjs",
     "test": "node --test",
     "check:content": "node scripts/check-content.mjs",
-    "check": "npm run test && npm run check:content"
+    "check": "node scripts/build-book.mjs --check && npm run test && npm run check:content"
   },
   "engines": {
     "node": ">=20"

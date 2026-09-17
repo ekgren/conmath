@@ -1,48 +1,42 @@
 # Editorial system
 
-Status: active draft 0.1
+Status: active draft 0.3
 
 ## Visual thesis
 
-An editorial mathematics book fused with a transparent computer: warm paper,
-dark laboratory surfaces, precise serif reading text, monospaced formal language,
-and one electric signal color.
+One continuous, quiet mathematical argument: warm paper, serif prose, numbered
+definitions and propositions, narrow text with marginal notes, and green signals.
 
-## Chapter contract
+## Content and sources
 
-Each formal chapter connects:
+Switches → logic → storage → finite computer → bounds and types → proof → analysis.
+Independent manuscript fragments in `book/parts/` assemble into one static HTML
+page. Stable anchors serve readers and agents. Old routes point into that page.
 
-```text
-motivation → definition → representation → implementation → proof → resource account
-```
+Distill inspires interactive figures next to the explanation. Kossak–Schmerl
+motivates careful separation of theories from models. Rudin motivates a compact
+definition–proposition–proof progression. Original prose and figures; source
+links accompany external background. No copied book passages or design assets.
 
-The prose remains understandable without JavaScript. Interaction reveals a
-construction's behavior rather than decorating it.
+## Interaction thesis
 
-## Layout
+- Reader changes circuit inputs; settled paths and truth-table rows follow.
+- Reader pulses a clock or steps an instruction; state grids change in place.
+- Reader refines or allocates until a declared limit becomes visible.
 
-- Strong chapter opening with one visual idea
-- Restrained reading measure
-- Margin definitions and qualifications on wide screens
-- Full-width laboratories at the point where execution matters
-- Formal blocks visibly distinct from explanatory prose
-- No generic card grids
+## Layout and access
 
-## Interaction
+- Desktop contents remain visible; compact screens get a sticky horizontal list.
+- Headings have permalink anchors; page works with native fragment navigation.
+- Native details disclosures for traces and secondary accounts.
+- Labels and numerals duplicate every color meaning.
+- Keyboard-operable controls, live results, visible focus, reduced motion.
+- Static reading remains available without JavaScript. Controls enable on load.
+- No scroll reveals hiding text. Smooth anchor scrolling and state transitions
+  are disabled with reduced motion.
 
-- Reader-controlled stepping before automatic execution
-- Multiple synchronized representations of the same object
-- Details on demand through traces and inspectors
-- Motion reserved for state transitions and reading orientation
-- Reduced-motion preference respected
+## Claim boundaries
 
-## Inspiration
-
-Distill demonstrated how interactive articles can combine text, models,
-simulations, and multiple representations while reducing setup barriers for the
-reader:
-
-- https://distill.pub/
-- https://distill.pub/2020/communicating-with-interactive-articles/
-
-Conmath adopts the editorial principles, not Distill's identity or templates.
+Accepted proof labels require checked-engine results. Ideal electrical diagrams
+are labeled as abstractions. Host examples, model costs, proposed semantics,
+and already executable constructions remain distinct.

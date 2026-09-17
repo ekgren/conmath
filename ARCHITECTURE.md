@@ -2,8 +2,10 @@
 
 ## Product
 
-Conmath is a static, executable mathematics book. Reading works without
-JavaScript; construction, execution, and proof tools progressively enhance it.
+Conmath is a static, executable mathematics book rendered as one continuous
+page. `book/parts/` holds ordered manuscript fragments; `scripts/build-book.mjs`
+assembles the committed `site/index.html`. Reading works without JavaScript;
+construction, execution, and proof tools progressively enhance it.
 
 ## Trust boundary
 
@@ -11,7 +13,9 @@ The current trusted executable surface is:
 
 1. `site/assets/engine/bit-machine.js`
 2. `site/assets/engine/bit-proof.js`
-3. Tests covering their behavior and deterministic traces
+3. `site/assets/engine/computer.js` — ideal logic, word machine, allocation, finite addition
+4. `site/assets/engine/approximation.js` — exact dyadic enclosure and its resource envelope
+5. Tests covering their behavior and deterministic traces
 
 Browser rendering is outside the mathematical trust boundary. The UI must not
 claim a theorem is checked unless the engine returns an accepted result.
@@ -45,4 +49,4 @@ Only the first two are formal claims. Host overhead is implementation telemetry.
 
 `npm run check` is the complete local closeout command. It verifies machine
 transitions and bounds, proof acceptance and rejection, trace determinism,
-required pages, internal links, and agent-facing metadata.
+required pages, fragment links, assets, assembly freshness, and agent-facing metadata.

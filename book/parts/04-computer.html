@@ -1,0 +1,20 @@
+<section id="computer" aria-labelledby="computer-title">
+  <div class="prose"><p class="section-number">4 / State and transitions</p><h2 id="computer-title">A computer small enough to see <a class="permalink" href="#computer" aria-label="Link to Computer">#</a></h2>
+  <p>Give the machine four words of data memory, each four bits wide. The accumulator <code>A</code> holds a working word. The two-bit program counter <code>PC</code> selects an instruction; the four-bit instruction register <code>IR</code> holds the instruction just fetched.</p>
+  <p class="definition"><strong>Definition 4.1 · Instruction.</strong> An instruction is a four-bit word. Its first two bits select HALT (00), LOAD (01), NOT (10), or STORE (11). Its last two bits select a data address for LOAD and STORE.</p>
+  <p>Each Step performs a whole instruction: fetch into IR, decode, then update state. This is a register-transfer model. A physical processor would split that work into clocked phases.</p></div>
+  <figure class="interactive wide-figure" id="computer-figure">
+    <div class="figure-heading"><span>Figure 4 · Four words, four instructions</span><label>Step budget <select id="computer-budget" disabled><option value="2">2</option><option value="4" selected>4</option><option value="8">8</option></select></label></div>
+    <div class="computer-layout">
+      <div><h3>Program ROM</h3><ol class="program-list" id="computer-program"><li><code>0100</code><span>LOAD 0</span></li><li><code>1000</code><span>NOT</span></li><li><code>1101</code><span>STORE 1</span></li><li><code>0000</code><span>HALT</span></li></ol></div>
+      <div><h3>Registers</h3><div id="computer-registers" class="registers"><p>A: 0000<br>PC: 00<br>IR: 0000</p></div><div class="bus-label">↔ data bus · 4 bits</div></div>
+      <div><h3>Data memory</h3><div id="computer-memory" class="memory-grid"><p>00: 0101<br>01: 0000<br>10: 0000<br>11: 0000</p></div><div class="diagram-label">address / bits, most significant first</div></div>
+    </div>
+    <div class="controls"><button id="computer-step" disabled>Step instruction</button><button id="computer-reset" disabled>Reset computer</button><span id="computer-status" role="status">Ready · 4 steps remaining</span></div>
+    <p id="computer-transfer" class="figure-result" role="status">Next: LOAD memory[0] into A.</p>
+    <figcaption>Pale cells hold 0; green cells hold 1. The outlined memory row is the last address read or written. Changing the budget resets the machine. ROM = fixed program storage.</figcaption>
+    <details><summary>Machine account and trace</summary><p>Data: 16 bits. ROM: 16 bits. A + PC + IR: 10 bits. Fuel counter: 8 bits. Four control states: 2 bits. Total model storage: 52 bits. Display history and the host step counter are outside this account.</p><ol id="computer-trace" class="trace-list"><li>No instructions yet.</li></ol><button id="computer-export" disabled>Export machine trace</button></details>
+  </figure>
+  <div class="prose"><p>With four steps, 0101 is loaded, complemented to 1010, stored at address 01, and the program halts. Try a budget of two. The machine stops before STORE: the result is <em>out of steps</em>, not a failed logical claim.</p></div>
+</section>
+

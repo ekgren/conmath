@@ -8,6 +8,9 @@ const required = [
   "book/01-first-distinction/index.html",
   "reference/index.html",
   "assets/styles.css",
+  "assets/book.js",
+  "assets/engine/computer.js",
+  "assets/engine/approximation.js",
   "assets/engine/bit-machine.js",
   "assets/engine/bit-proof.js"
 ];
@@ -36,15 +39,24 @@ for (const file of allFiles.filter((path) => path.endsWith(".html"))) {
     errors.push(`missing page metadata: ${relative(root, file)}`);
   }
 
-  for (const match of html.matchAll(/href="([^"]+)"/g)) {
+  const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+  if (new Set(ids).size !== ids.length) errors.push(`duplicate IDs: ${relative(root, file)}`);
+  for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const href = match[1];
-    if (/^(https?:|mailto:|#)/.test(href)) continue;
+    if (/^(https?:|mailto:)/.test(href)) continue;
     const withoutHash = href.split("#")[0];
-    if (!withoutHash) continue;
+    if (!withoutHash) {
+      if (!ids.includes(href.slice(1))) errors.push(`broken anchor in ${relative(root, file)}: ${href}`);
+      continue;
+    }
     const target = normalize(join(dirname(file), withoutHash));
     const candidates = [target, join(target, "index.html")];
     if (!candidates.some((candidate) => allFiles.includes(candidate))) {
       errors.push(`broken link in ${relative(root, file)}: ${href}`);
+    } else if (href.includes('#')) {
+      const destination = candidates.find(candidate => allFiles.includes(candidate));
+      const destinationHtml = await readFile(destination, 'utf8');
+      if (!destinationHtml.includes(`id="${href.split('#')[1]}"`)) errors.push(`broken destination anchor in ${relative(root, file)}: ${href}`);
     }
   }
 }

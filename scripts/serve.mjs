@@ -1,10 +1,18 @@
-import { createReadStream, statSync } from "node:fs";
+import { createReadStream, statSync, watch } from "node:fs";
+import { buildBook } from './build-book.mjs';
 import { createServer } from "node:http";
 import { extname, join, normalize } from "node:path";
 
 const root = join(process.cwd(), "site");
 const host = "127.0.0.1";
 const port = Number(process.env.CONMATH_PORT ?? 4173);
+
+await buildBook();
+let rebuildTimer;
+watch(new URL('../book/parts/', import.meta.url), () => {
+  clearTimeout(rebuildTimer);
+  rebuildTimer = setTimeout(() => buildBook().catch(error => console.error(error)), 80);
+});
 
 const types = {
   ".css": "text/css; charset=utf-8",

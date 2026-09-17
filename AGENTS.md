@@ -8,10 +8,12 @@ an API or source of truth.
 - `ARCHITECTURE.md` — boundaries, commands, trust model
 - `docs/foundation/charter.md` — normative mathematical commitments
 - `README.md` — current product surface
+- `book/README.md` — manuscript parts and assembly; edit parts, not generated HTML
 
 ## Commands
 
 - `npm run dev` — serve at `127.0.0.1:4173`
+- `npm run build` — assemble the continuous page from `book/parts/`
 - `npm run check` — engine tests plus content/link checks
 
 ## Hard rules

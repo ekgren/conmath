@@ -1,0 +1,13 @@
+<section id="memory" aria-labelledby="memory-title">
+  <div class="prose"><p class="section-number">3 / A value that persists</p><h2 id="memory-title">Remembering a bit <a class="permalink" href="#memory" aria-label="Link to Memory">#</a></h2>
+  <p>A combinational gate answers its present inputs. Memory retains a value. Feedback allows a circuit to have stable states; a controlled write changes which state it holds.</p>
+  <p>One implementation uses cross-coupled gates as a latch. A clocked flip-flop can combine latches so that input is captured at a clock edge. We now abstract this circuitry as a one-bit register: on a rising edge, copy D into Q; otherwise preserve Q.</p>
+  <aside class="sidenote">This is an ideal edge-triggered register, not a timing simulation. Physical setup and hold times and metastability require a more detailed model. <a href="https://computationstructures.org/notes/sequential_logic/notes.html">Sequential logic background</a>.</aside></div>
+  <figure class="interactive">
+    <div class="figure-heading"><span>Figure 3 · Input is not stored state</span><div class="controls"><button id="register-input" disabled aria-pressed="false">D = 0</button><button id="register-clock" disabled>Pulse clock ↑</button></div></div>
+    <div class="register-diagram"><div><span class="diagram-label">Input D</span><span id="register-d" class="bit-cell" data-value="0">0</span></div><span class="arrow" aria-hidden="true">→</span><div class="register-symbol"><span>D</span><strong>1-bit register</strong><span>Q</span><small>↑ clock</small></div><span class="arrow" aria-hidden="true">→</span><div><span class="diagram-label">Stored Q</span><span id="register-q" class="bit-cell" data-value="0">0</span></div></div>
+    <p id="register-result" class="figure-result" role="status">D = 0, Q = 0. Change D, then pulse the clock to store it.</p>
+    <figcaption>Four such cells side by side make a four-bit register. Memory adds an address decoder and write control to select a word. A stored 0 occupies space just as a stored 1 does.</figcaption>
+  </figure>
+</section>
+

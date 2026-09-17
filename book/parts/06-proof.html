@@ -1,0 +1,14 @@
+<section id="proof" aria-labelledby="proof-title">
+  <div class="prose"><p class="section-number">6 / What counts as evidence?</p><h2 id="proof-title">A proof has a domain <a class="permalink" href="#proof" aria-label="Link to Proof">#</a></h2>
+  <p class="definition"><strong>Proposition 6.1.</strong> For every <code>b : Bit</code>, <code>not(not(b)) = b</code>.</p>
+  <p><em>Proof.</em> If b is 0, the two operations give 0 → 1 → 0. If b is 1, they give 1 → 0 → 1. These are all the values of Bit. Each branch reduces to equality of identical values. □</p>
+  <p>The existing kernel checks this finite case split. Its internal constructor names are low and high. The checker runs as a separate browser module; compiling it to instructions of our small computer remains future work.</p>
+  <div class="inline-experiment"><div class="controls"><button id="bit-check" disabled>Check Bit proof</button><span id="bit-proof-result" role="status">Not checked</span></div><details><summary>Proof evidence</summary><pre id="bit-proof-trace">No checker result yet.</pre></details></div>
+  <h3>State is useful. It is not a consistency theorem.</h3>
+  <p>The barber specification asks for a person who shaves exactly those people who do not shave themselves. Applying that rule to the barber requires <code>P ↔ not P</code>. No Boolean value satisfies it. Changing state over time can describe alternation, but that is a different specification from the original simultaneous condition.</p>
+  <p>We can avoid admitting this object by restricting formation rules. To justify such restrictions, we still need a precise language, semantics, and a soundness argument.</p>
+  <p>Gödel’s incompleteness theorems concern sufficiently expressive, effectively axiomatized arithmetic theories under consistency assumptions. Finite hardware does not invalidate them. A fixed finite domain can be exhaustively checked in principle; an extensible theory reasoning about arbitrary computations may again meet the hypotheses. A bounded proof search that stops without a proof settles neither truth nor provability.</p>
+  <aside class="sidenote"><a href="https://doi.org/10.1007/BF01700692">Gödel’s original paper</a>. Our current finite checker makes no claim to decide all arithmetic or to prove its own consistency.</aside>
+  <p>The project’s question is therefore precise: <em>which claims can a declared machine construct and check, with which resources, and under which rules?</em></p>
+  </div>
+</section>
